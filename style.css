@@ -34,7 +34,7 @@ body {
       width: 100%;
     }
 
-    .app-header {
+    header {
       position: absolute;
       top: 20px;
       left: 20px;

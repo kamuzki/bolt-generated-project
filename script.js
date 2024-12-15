@@ -11,38 +11,42 @@ import { createClient } from '@libsql/client';
     });
 
     async function initDB() {
-      await db.execute(`
-        CREATE TABLE IF NOT EXISTS projects (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          name TEXT NOT NULL,
-          description TEXT
-        )
-      `);
-      await db.execute(`
-        CREATE TABLE IF NOT EXISTS users (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          username TEXT NOT NULL,
-          password TEXT NOT NULL
-        )
-      `);
-      await db.execute(`
-        CREATE TABLE IF NOT EXISTS protocols (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          title TEXT NOT NULL,
-          content TEXT
-        )
-      `);
-      await db.execute(`
-        CREATE TABLE IF NOT EXISTS contacts (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          name TEXT NOT NULL,
-          email TEXT,
-          phone TEXT
-        )
-      `);
+      try {
+        await db.execute(`
+          CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            description TEXT
+          )
+        `);
+        await db.execute(`
+          CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            password TEXT NOT NULL
+          )
+        `);
+        await db.execute(`
+          CREATE TABLE IF NOT EXISTS protocols (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            content TEXT
+          )
+        `);
+        await db.execute(`
+          CREATE TABLE IF NOT EXISTS contacts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT,
+            phone TEXT
+          )
+        `);
+      } catch (error) {
+        console.error("Failed to initialize DB:", error);
+      }
     }
 
-    initDB().catch(err => console.error("Failed to initialize DB:", err));
+    initDB();
 
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
@@ -59,26 +63,23 @@ import { createClient } from '@libsql/client';
 
     const navLinks = document.querySelectorAll('.sidebar nav a');
     navLinks.forEach(link => {
-      link.addEventListener('click', (event) => {
+      link.addEventListener('click', async (event) => {
         event.preventDefault();
         const href = link.getAttribute('href');
-        fetch(href + '.html')
-          .then(response => {
-            if (!response.ok) {
-              pageContent.innerHTML = `<p>Seite nicht gefunden: ${href}</p>`;
-              return;
-            }
-            return response.text();
-          })
-          .then(html => {
-            pageContent.innerHTML = html;
-            if (href === '/projekte') {
-              addProjectButton();
-            }
-          })
-          .catch(error => {
-            pageContent.innerHTML = `<p>Fehler beim Laden der Seite: ${error}</p>`;
-          });
+        try {
+          const response = await fetch(href + '.html');
+          if (!response.ok) {
+            pageContent.innerHTML = `<p>Seite nicht gefunden: ${href}</p>`;
+            return;
+          }
+          const html = await response.text();
+          pageContent.innerHTML = html;
+          if (href === '/projekte') {
+            addProjectButton();
+          }
+        } catch (error) {
+           pageContent.innerHTML = `<p>Fehler beim Laden der Seite: ${error}</p>`;
+        }
       });
     });
 
