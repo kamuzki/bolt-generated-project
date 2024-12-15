@@ -1,0 +1,12 @@
+{
+      "name": "baujournal",
+      "scripts": {
+        "dev": "vite"
+      },
+      "dependencies": {
+        "@libsql/client": "^0.4.0"
+      },
+      "devDependencies": {
+        "vite": "^4.4.9"
+      }
+    }

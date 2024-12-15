@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Baujournal</title>
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+      <div class="container">
+        <header class="app-header">
+          <div class="top-bar">
+            <div class="title-container">
+              <h1>Baujournal</h1>
+            </div>
+            <div class="theme-toggle-container">
+              <button id="theme-toggle"><i class="fas fa-sun"></i></button>
+            </div>
+          </div>
+        </header>
+        <aside class="sidebar">
+          <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+          <nav>
+            <ul>
+              <li><a href="/projekte"><i class="fas fa-folder"></i> <span>Projekte</span></a></li>
+              <li><a href="/benutzer"><i class="fas fa-users"></i> <span>Benutzer</span></a></li>
+              <li><a href="/protokolle"><i class="fas fa-file-alt"></i> <span>Protokolle</span></a></li>
+              <li><a href="/kontakte"><i class="fas fa-address-book"></i> <span>Kontakte</span></a></li>
+            </ul>
+          </nav>
+        </aside>
+        <main class="content">
+          <div id="page-content">
+            <p>Willkommen im Baujournal!</p>
+          </div>
+        </main>
+      </div>
+      <script type="module" src="script.js"></script>
+    </body>
+    </html>
