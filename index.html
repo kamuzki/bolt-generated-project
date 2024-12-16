@@ -52,17 +52,17 @@
                   >
                 </li>
                 <li>
-                  <a href="/benutzer"
+                  <a href="#" id="benutzer-link"
                     ><i class="fas fa-users"></i> <span>Benutzer</span></a
                   >
                 </li>
                 <li>
-                  <a href="/protokolle"
+                  <a href="#" id="protokolle-link"
                     ><i class="fas fa-file-alt"></i> <span>Protokolle</span></a
                   >
                 </li>
                 <li>
-                  <a href="/kontakte"
+                  <a href="#" id="kontakte-link"
                     ><i class="fas fa-address-book"></i> <span>Kontakte</span></a
                   >
                 </li>
@@ -81,6 +81,24 @@
           <div class="popup-content">
             <button id="neues-projekt-btn">Neues Projekt erstellen</button>
             <button id="projektdatenbank-btn">Projektdatenbank</button>
+          </div>
+        </div>
+        <div class="popup" id="benutzer-popup">
+          <div class="popup-content">
+            <button id="neuer-benutzer-btn">Neuen Benutzer anlegen</button>
+            <button id="benutzerdatenbank-btn">Benutzerdatenbank</button>
+          </div>
+        </div>
+        <div class="popup" id="protokolle-popup">
+          <div class="popup-content">
+            <button id="neues-protokoll-btn">Neues Protokoll erstellen</button>
+            <button id="protokolldatenbank-btn">Protokolldatenbank</button>
+          </div>
+        </div>
+        <div class="popup" id="kontakte-popup">
+          <div class="popup-content">
+            <button id="neuer-kontakt-btn">Neuen Kontakt anlegen</button>
+            <button id="kontakt-datenbank-btn">Kontaktdatenbank</button>
           </div>
         </div>
         <div class="popup-overlay" id="popup-overlay"></div>
@@ -161,6 +179,93 @@
               <button type="submit">Projekt speichern</button>
               <button type="button" id="edit-abbrechen-btn">Abbrechen</button>
             </form>
+          </div>
+        </div>
+        <div class="popup" id="neuer-kontakt-popup">
+          <div class="popup-content">
+            <form id="neuer-kontakt-form">
+              <label for="kontakt-geschlecht">Geschlecht:</label>
+              <select id="kontakt-geschlecht" name="kontakt-geschlecht" required>
+                <option value="männlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select><br><br>
+
+              <label for="kontakt-vorname">Vorname:</label>
+              <input type="text" id="kontakt-vorname" name="kontakt-vorname" required><br><br>
+
+              <label for="kontakt-nachname">Nachname:</label>
+              <input type="text" id="kontakt-nachname" name="kontakt-nachname" required><br><br>
+
+              <label for="kontakt-email">E-Mail:</label>
+              <input type="email" id="kontakt-email" name="kontakt-email" required><br><br>
+
+              <label for="kontakt-nummer">Telefonnummer:</label>
+              <input type="tel" id="kontakt-nummer" name="kontakt-nummer" required><br><br>
+
+              <label for="kontakt-firma">Firma:</label>
+              <input type="text" id="kontakt-firma" name="kontakt-firma"><br><br>
+
+              <label for="kontakt-adresse">Adresse:</label>
+              <input type="text" id="kontakt-adresse" name="kontakt-adresse"><br><br>
+
+              <button type="submit">Kontakt erstellen</button>
+              <button type="button" id="kontakt-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup" id="kontakt-datenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Kontakte</h2>
+            <ul class="kontakt-list" id="kontakt-list"></ul>
+            <button type="button" id="kontakt-zurueck-btn">Zurück</button>
+          </div>
+        </div>
+        <div class="popup" id="edit-kontakt-popup">
+          <div class="popup-content">
+            <form id="edit-kontakt-form">
+              <label for="edit-kontakt-geschlecht">Geschlecht:</label>
+              <select id="edit-kontakt-geschlecht" name="edit-kontakt-geschlecht" required>
+                <option value="männlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select><br><br>
+
+              <label for="edit-kontakt-vorname">Vorname:</label>
+              <input type="text" id="edit-kontakt-vorname" name="edit-kontakt-vorname" required><br><br>
+
+              <label for="edit-kontakt-nachname">Nachname:</label>
+              <input type="text" id="edit-kontakt-nachname" name="edit-kontakt-nachname" required><br><br>
+
+              <label for="edit-kontakt-email">E-Mail:</label>
+              <input type="email" id="edit-kontakt-email" name="edit-kontakt-email" required><br><br>
+
+              <label for="edit-kontakt-nummer">Telefonnummer:</label>
+              <input type="tel" id="edit-kontakt-nummer" name="edit-kontakt-nummer" required><br><br>
+
+              <label for="edit-kontakt-firma">Firma:</label>
+              <input type="text" id="edit-kontakt-firma" name="edit-kontakt-firma"><br><br>
+
+              <label for="edit-kontakt-adresse">Adresse:</label>
+              <input type="text" id="edit-kontakt-adresse" name="edit-kontakt-adresse"><br><br>
+
+              <button type="submit">Kontakt speichern</button>
+              <button type="button" id="edit-kontakt-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup" id="benutzerdatenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Benutzer</h2>
+            <ul class="benutzer-list" id="benutzer-list"></ul>
+            <button type="button" id="benutzer-zurueck-btn">Zurück</button>
+          </div>
+        </div>
+        <div class="popup" id="protokolldatenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Protokolle</h2>
+            <ul class="protokoll-list" id="protokoll-list"></ul>
+            <button type="button" id="protokoll-zurueck-btn">Zurück</button>
           </div>
         </div>
         <script type="module" src="script.js"></script>
