@@ -1,2 +1,1 @@
-
-    document.getElementById('neuer-benutzer-form').addEventListener('submit',
+document.getElementById('neuer-benutzer-form').addEventListener('submit',

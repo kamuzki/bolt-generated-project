@@ -1,6 +1,63 @@
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="de">
     <head>
       <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Neues Protokoll</title>
+      <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <header>
+        <div class="top-bar">
+          <div class="title-container">
+            <h1>Neues Protokoll</h1>
+          </div>
+        </div>
+      </header>
+      <div class="container">
+        <main class="content">
+          <form id="neues-protokoll-form">
+            <label for="project_id">Projekt:</label>
+            <select id="project_id" name="project_id" required>
+            </select><br><br>
+
+            <label for="date">Datum:</label>
+            <input type="date" id="date" name="date" required><br><br>
+
+            <label for="description">Beschreibung:</label>
+            <textarea id="description" name="description" required></textarea><br><br>
+
+            <label for="type">Typ:</label>
+            <select id="type" name="type" required>
+              <option value="Aufgabe">Aufgabe</option>
+              <option value="Entscheidung">Entscheidung</option>
+              <option value="Information">Information</option>
+            </select><br><br>
+
+            <label for="contact_id">Zuständig:</label>
+            <select id="contact_id" name="contact_id">
+            </select><br><br>
+
+            <label for="deadline">Frist:</label>
+            <input type="date" id="deadline" name="deadline"><br><br>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+              <option value="Offen">Offen</option>
+              <option value="In Bearbeitung">In Bearbeitung</option>
+              <option value="Erledigt">Erledigt</option>
+            </select><br><br>
+
+            <label for="comments">Kommentare:</label>
+            <textarea id="comments" name="comments"></textarea><br><br>
+
+            <button type="submit">Protokollpunkt erstellen</button>
+          </form>
+        </main>
+      </div>
+      <footer>
+        Powered by M.D.
+      </footer>
+      <script type="module" src="neues-protokoll.js"></script>
+    </body>
+    </html>

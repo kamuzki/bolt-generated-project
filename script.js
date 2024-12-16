@@ -20,6 +20,10 @@ const themeToggle = document.getElementById('theme-toggle');
     const editProjektPopup = document.getElementById('edit-projekt-popup');
     const editAbbrechenBtn = document.getElementById('edit-abbrechen-btn');
     const editProjektForm = document.getElementById('edit-projekt-form');
+    const protokolleLink = document.getElementById('protokolle-link');
+    const protokollePopup = document.getElementById('protokolle-popup');
+    const neuesProtokollBtn = document.getElementById('neues-protokoll-btn');
+    const protokolldatenbankBtn = document.getElementById('protokolldatenbank-btn');
 
     let currentActiveProject = null;
     let editButtonVisible = false;
@@ -77,6 +81,7 @@ const themeToggle = document.getElementById('theme-toggle');
       neuesProjektPopup.style.display = 'none';
       projektdatenbankPopup.style.display = 'none';
       editProjektPopup.style.display = 'none';
+      protokollePopup.style.display = 'none';
       popupOverlay.style.display = 'none';
     });
 
@@ -232,4 +237,20 @@ const themeToggle = document.getElementById('theme-toggle');
         });
         projektList.appendChild(listItem);
       });
+    });
+
+    protokolleLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      protokollePopup.style.display = 'block';
+      popupOverlay.style.display = 'block';
+    });
+
+    neuesProtokollBtn.addEventListener('click', () => {
+      protokollePopup.style.display = 'none';
+      window.location.href = '/neues-protokoll.html';
+    });
+
+    protokolldatenbankBtn.addEventListener('click', () => {
+      protokollePopup.style.display = 'none';
+      window.location.href = '/protokolldatenbank.html';
     });

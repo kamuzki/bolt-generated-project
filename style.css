@@ -340,3 +340,31 @@ body {
     .projekt-list li.active {
       background-color: #e0e0e0;
     }
+    #neues-protokoll-form label,
+    #neues-protokoll-form input,
+    #neues-protokoll-form select,
+    #neues-protokoll-form textarea {
+        margin-bottom: 10px;
+    }
+
+    #neues-protokoll-form button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    #neues-protokoll-form button:hover {
+        background-color: #45a049;
+    }
+
+    #neues-protokoll-form button[type="button"] {
+        background-color: #f44336;
+    }
+
+    #neues-protokoll-form button[type="button"]:hover {
+        background-color: #da190b;
+    }
