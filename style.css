@@ -5,55 +5,34 @@ body {
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(45deg, #3498db, #9b59b6, #e74c3c, #f39c12);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-    }
-
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .container {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      display: flex;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      max-width: 1200px;
-      width: 100%;
+      background: #f0f0f0;
+      transition: background 0.3s ease;
+      position: relative;
     }
 
     header {
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 20px;
-      width: auto;
+      width: 100%;
+      z-index: 10;
+      padding: 0 20px;
     }
 
     .top-bar {
       display: flex;
       align-items: center;
+      justify-content: space-between;
     }
 
     .title-container {
       text-align: left;
-      margin-right: 10px;
     }
 
     h1 {
-      color: white;
+      color: #333;
       margin: 0;
+      transition: color 0.3s ease;
     }
 
     .theme-toggle-container {
@@ -63,7 +42,7 @@ body {
     #theme-toggle {
       background: none;
       border: none;
-      color: white;
+      color: #333;
       font-size: 24px;
       cursor: pointer;
       transition: color 0.3s ease;
@@ -71,17 +50,29 @@ body {
     }
 
     #theme-toggle:hover {
-      color: #ddd;
+      color: #555;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      max-width: 1200px;
+      width: 100%;
+      transition: background-color 0.3s ease, border 0.3s ease;
     }
 
     .sidebar {
       width: 250px;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: #f9f9f9;
       padding: 20px;
       display: flex;
       flex-direction: column;
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid #eee;
       border-radius: 10px 0 0 10px;
+      transition: background-color 0.3s ease, border 0.3s ease;
     }
 
     .sidebar nav ul {
@@ -95,15 +86,14 @@ body {
 
     .sidebar nav a {
       text-decoration: none;
-      color: white;
+      color: #333;
       font-weight: bold;
       padding: 10px 15px;
       border-radius: 5px;
       display: flex;
       align-items: center;
-      transition: background-color 0.3s ease;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: transparent;
       justify-content: flex-start;
     }
 
@@ -112,7 +102,7 @@ body {
     }
 
     .sidebar nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: #eee;
     }
 
     .sidebar.collapsed {
@@ -130,11 +120,12 @@ body {
     #menu-toggle {
       background: none;
       border: none;
-      color: white;
+      color: #333;
       font-size: 24px;
       cursor: pointer;
       align-self: flex-start;
       margin-bottom: 20px;
+      transition: color 0.3s ease;
     }
 
     .content {
@@ -149,15 +140,44 @@ body {
       background: #333;
     }
 
-    .dark-mode .container {
-      background-color: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .dark-mode body {
+      background: #333;
     }
 
     .dark-mode h1,
-    .dark-mode nav a,
     .dark-mode #theme-toggle,
     .dark-mode .sidebar nav a,
     .dark-mode #menu-toggle {
       color: #fff;
+    }
+
+    .dark-mode .container {
+      background-color: #444;
+      border: 1px solid #555;
+    }
+
+    .dark-mode .sidebar {
+      background-color: #444;
+      border-right: 1px solid #555;
+    }
+
+    .dark-mode .sidebar nav a {
+      color: #fff;
+    }
+
+    .dark-mode .sidebar nav a:hover {
+      background-color: #555;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #777;
+      font-size: 0.8em;
+    }
+
+    .dark-mode footer {
+      color: #aaa;
     }

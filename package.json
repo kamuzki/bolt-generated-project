@@ -1,5 +1,5 @@
 {
-      "name": "baujournal",
+      "name": "bauprotokolle",
       "scripts": {
         "dev": "vite"
       },
