@@ -1,121 +1,168 @@
 <!DOCTYPE html>
     <html lang="de">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Bauprotokolle</title>
-      <link rel="stylesheet" href="style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
-    <body>
-      <header>
-        <div class="top-bar">
-          <div class="title-container">
-            <h1>Bauprotokolle</h1>
-            <div id="active-project-button-container">
-              <button id="active-project-button">
-                <span id="active-project-name"></span>
-                <div class="button-group">
-                  <button id="edit-project-button"><i class="fas fa-pencil-alt"></i></button>
-                  <button id="change-project-button"><i class="fas fa-folder-open"></i></button>
-                </div>
-              </button>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bauprotokolle</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <header>
+          <div class="top-bar">
+            <div class="title-container">
+              <h1>Bauprotokolle</h1>
+              <div id="active-project-button-container">
+                <button id="active-project-button">
+                  <span id="active-project-name"></span>
+                  <div class="button-group">
+                    <button id="edit-project-button">
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button id="change-project-button">
+                      <i class="fas fa-folder-open"></i>
+                    </button>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div class="theme-toggle-container">
+              <button id="theme-toggle"><i class="fas fa-sun"></i></button>
             </div>
           </div>
-          <div class="theme-toggle-container">
-            <button id="theme-toggle"><i class="fas fa-sun"></i></button>
+        </header>
+        <div class="container">
+          <aside class="sidebar">
+            <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <nav>
+              <ul>
+                <li>
+                  <a href="#" id="projekte-link"
+                    ><i class="fas fa-folder"></i> <span>Projekte</span></a
+                  >
+                </li>
+                <li>
+                  <a href="/benutzer"
+                    ><i class="fas fa-users"></i> <span>Benutzer</span></a
+                  >
+                </li>
+                <li>
+                  <a href="/protokolle"
+                    ><i class="fas fa-file-alt"></i> <span>Protokolle</span></a
+                  >
+                </li>
+                <li>
+                  <a href="/kontakte"
+                    ><i class="fas fa-address-book"></i> <span>Kontakte</span></a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </aside>
+          <main class="content">
+            <div id="page-content">
+              <p>Willkommen bei Bauprotokolle!</p>
+              <div id="active-project"></div>
+            </div>
+          </main>
+        </div>
+        <footer>Powered by M.D.</footer>
+        <div class="popup" id="projekte-popup">
+          <div class="popup-content">
+            <button id="neues-projekt-btn">Neues Projekt erstellen</button>
+            <button id="projektdatenbank-btn">Projektdatenbank</button>
           </div>
         </div>
-      </header>
-      <div class="container">
-        <aside class="sidebar">
-          <button id="menu-toggle"><i class="fas fa-bars"></i></button>
-          <nav>
-            <ul>
-              <li><a href="#" id="projekte-link"><i class="fas fa-folder"></i> <span>Projekte</span></a></li>
-              <li><a href="/benutzer"><i class="fas fa-users"></i> <span>Benutzer</span></a></li>
-              <li><a href="/protokolle"><i class="fas fa-file-alt"></i> <span>Protokolle</span></a></li>
-              <li><a href="/kontakte"><i class="fas fa-address-book"></i> <span>Kontakte</span></a></li>
-            </ul>
-          </nav>
-        </aside>
-        <main class="content">
-          <div id="page-content">
-            <p>Willkommen bei Bauprotokolle!</p>
-            <div id="active-project"></div>
+        <div class="popup-overlay" id="popup-overlay"></div>
+        <div class="popup" id="neues-projekt-popup">
+          <div class="popup-content">
+            <form id="neues-projekt-form">
+              <label for="projektname">Projektname:</label>
+              <input type="text" id="projektname" name="projektname" required /><br /><br />
+
+              <label for="strasse">Straße:</label>
+              <input type="text" id="strasse" name="strasse" required /><br /><br />
+
+              <label for="hausnummer">Hausnummer:</label>
+              <input
+                type="text"
+                id="hausnummer"
+                name="hausnummer"
+                required
+              /><br /><br />
+
+              <label for="plz">PLZ:</label>
+              <input type="text" id="plz" name="plz" required /><br /><br />
+
+              <label for="ort">Ort:</label>
+              <input type="text" id="ort" name="ort" required /><br /><br />
+
+              <label for="land">Land:</label>
+              <input type="text" id="land" name="land" required /><br /><br />
+
+              <button type="submit">Projekt erstellen</button>
+              <button type="button" id="abbrechen-btn">Abbrechen</button>
+            </form>
           </div>
-        </main>
-      </div>
-      <footer>
-        Powered by M.D.
-      </footer>
-      <div class="popup" id="projekte-popup">
-        <div class="popup-content">
-          <button id="neues-projekt-btn">Neues Projekt erstellen</button>
-          <button id="projektdatenbank-btn">Projektdatenbank</button>
         </div>
-      </div>
-      <div class="popup-overlay" id="popup-overlay"></div>
-      <div class="popup" id="neues-projekt-popup">
-        <div class="popup-content">
-          <form id="neues-projekt-form">
-            <label for="projektname">Projektname:</label>
-            <input type="text" id="projektname" name="projektname" required><br><br>
-
-            <label for="strasse">Straße:</label>
-            <input type="text" id="strasse" name="strasse" required><br><br>
-
-            <label for="hausnummer">Hausnummer:</label>
-            <input type="text" id="hausnummer" name="hausnummer" required><br><br>
-
-            <label for="plz">PLZ:</label>
-            <input type="text" id="plz" name="plz" required><br><br>
-
-            <label for="ort">Ort:</label>
-            <input type="text" id="ort" name="ort" required><br><br>
-
-            <label for="land">Land:</label>
-            <input type="text" id="land" name="land" required><br><br>
-
-            <button type="submit">Projekt erstellen</button>
-            <button type="button" id="abbrechen-btn">Abbrechen</button>
-          </form>
+        <div class="popup" id="projektdatenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Projekte</h2>
+            <ul class="projekt-list" id="projekt-list"></ul>
+            <button type="button" id="zurueck-btn">Zurück</button>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="projektdatenbank-popup">
-        <div class="popup-content">
-          <h2>Gespeicherte Projekte</h2>
-          <ul class="projekt-list" id="projekt-list">
-          </ul>
-          <button type="button" id="zurueck-btn">Zurück</button>
+        <div class="popup" id="edit-projekt-popup">
+          <div class="popup-content">
+            <form id="edit-projekt-form">
+              <label for="edit-projektname">Projektname:</label>
+              <input
+                type="text"
+                id="edit-projektname"
+                name="edit-projektname"
+                required
+              /><br /><br />
+
+              <label for="edit-strasse">Straße:</label>
+              <input
+                type="text"
+                id="edit-strasse"
+                name="edit-strasse"
+                required
+              /><br /><br />
+
+              <label for="edit-hausnummer">Hausnummer:</label>
+              <input
+                type="text"
+                id="edit-hausnummer"
+                name="edit-hausnummer"
+                required
+              /><br /><br />
+
+              <label for="edit-plz">PLZ:</label>
+              <input type="text" id="edit-plz" name="edit-plz" required /><br /><br />
+
+              <label for="edit-ort">Ort:</label>
+              <input type="text" id="edit-ort" name="edit-ort" required /><br /><br />
+
+              <label for="edit-land">Land:</label>
+              <input type="text" id="edit-land" name="edit-land" required /><br /><br />
+
+              <button type="submit">Projekt speichern</button>
+              <button type="button" id="edit-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="edit-projekt-popup">
-        <div class="popup-content">
-          <form id="edit-projekt-form">
-            <label for="edit-projektname">Projektname:</label>
-            <input type="text" id="edit-projektname" name="edit-projektname" required><br><br>
-
-            <label for="edit-strasse">Straße:</label>
-            <input type="text" id="edit-strasse" name="edit-strasse" required><br><br>
-
-            <label for="edit-hausnummer">Hausnummer:</label>
-            <input type="text" id="edit-hausnummer" name="edit-hausnummer" required><br><br>
-
-            <label for="edit-plz">PLZ:</label>
-            <input type="text" id="edit-plz" name="edit-plz" required><br><br>
-
-            <label for="edit-ort">Ort:</label>
-            <input type="text" id="edit-ort" name="edit-ort" required><br><br>
-
-            <label for="edit-land">Land:</label>
-            <input type="text" id="edit-land" name="edit-land" required><br><br>
-
-            <button type="submit">Projekt speichern</button>
-            <button type="button" id="edit-abbrechen-btn">Abbrechen</button>
-          </form>
-        </div>
-      </div>
-      <script type="module" src="script.js"></script>
-    </body>
+        <script type="module" src="script.js"></script>
+      </body>
     </html>

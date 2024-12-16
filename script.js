@@ -33,9 +33,11 @@ const themeToggle = document.getElementById('theme-toggle');
           <h3>Aktives Projekt:</h3>
           <p>${activeProject.projektname}</p>
           <p>Adresse:</p>
-          <p>${activeProject.adresse.strasse} ${activeProject.adresse.hausnummer}</p>
-          <p>${activeProject.adresse.plz} ${activeProject.adresse.ort}</p>
-          <p>${activeProject.adresse.land}</p>
+          <p>Straße: ${activeProject.adresse.strasse}</p>
+          <p>Hausnummer: ${activeProject.adresse.hausnummer}</p>
+          <p>Postleitzahl: ${activeProject.adresse.plz}</p>
+          <p>Ort: ${activeProject.adresse.ort}</p>
+          <p>Land: ${activeProject.adresse.land}</p>
         `;
         currentActiveProject = activeProject;
       } else {

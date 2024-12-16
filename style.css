@@ -1,11 +1,11 @@
 body {
-      font-family: sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(to bottom, #e6e6fa, #f0e6ef);
+      background-color: #f5f7fa;
       transition: background 0.3s ease;
       position: relative;
     }
@@ -17,6 +17,8 @@ body {
       width: 100%;
       z-index: 10;
       padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .top-bar {
@@ -35,25 +37,31 @@ body {
     h1 {
       color: #333;
       margin: 0;
+      font-size: 1.5rem;
+      font-weight: 500;
       transition: color 0.3s ease;
     }
 
     #active-project-button-container {
       display: none;
       margin-top: 10px;
+      position: absolute;
+      top: 20px;
+      right: 65px;
     }
 
     #active-project-button {
       background-color: #f0f0f0;
       border: none;
       border-radius: 5px;
-      padding: 10px 15px;
+      padding: 8px 12px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
       transition: background-color 0.3s ease;
       position: relative;
+      font-size: 0.9rem;
     }
 
     #active-project-button:hover {
@@ -64,13 +72,14 @@ body {
       display: flex;
     }
 
-    #edit-project-button, #change-project-button {
+    #edit-project-button,
+    #change-project-button {
       background: none;
       border: none;
       color: #333;
       font-size: 16px;
       cursor: pointer;
-      margin-left: 10px;
+      margin-left: 8px;
       padding: 0;
       display: none;
     }
@@ -130,7 +139,7 @@ body {
     .sidebar nav a {
       text-decoration: none;
       color: #333;
-      font-weight: bold;
+      font-weight: 500;
       padding: 10px 15px;
       border-radius: 5px;
       display: flex;
@@ -180,11 +189,11 @@ body {
     }
 
     .dark-mode {
-      background: linear-gradient(to bottom, #4b0082, #2e004f);
+      background: #1a1a2e;
     }
 
     .dark-mode body {
-      background: linear-gradient(to bottom, #4b0082, #2e004f);
+      background: #1a1a2e;
     }
 
     .dark-mode h1,
@@ -198,13 +207,13 @@ body {
     }
 
     .dark-mode .container {
-      background-color: #444;
-      border: 1px solid #555;
+      background-color: #2a2a3e;
+      border: 1px solid #3a3a4e;
     }
 
     .dark-mode .sidebar {
-      background-color: #444;
-      border-right: 1px solid #555;
+      background-color: #2a2a3e;
+      border-right: 1px solid #3a3a4e;
     }
 
     .dark-mode .sidebar nav a {
@@ -212,7 +221,7 @@ body {
     }
 
     .dark-mode .sidebar nav a:hover {
-      background-color: #555;
+      background-color: #3a3a4e;
     }
 
     footer {
@@ -273,7 +282,8 @@ body {
       z-index: 999;
     }
 
-    #neues-projekt-form, #edit-projekt-form {
+    #neues-projekt-form,
+    #edit-projekt-form {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -281,19 +291,22 @@ body {
       margin: 0 auto;
     }
 
-    #neues-projekt-form label, #edit-projekt-form label {
+    #neues-projekt-form label,
+    #edit-projekt-form label {
       margin-bottom: 5px;
       font-weight: bold;
     }
 
-    #neues-projekt-form input, #edit-projekt-form input {
+    #neues-projekt-form input,
+    #edit-projekt-form input {
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ddd;
       border-radius: 5px;
     }
 
-    #neues-projekt-form button, #edit-projekt-form button {
+    #neues-projekt-form button,
+    #edit-projekt-form button {
       padding: 10px 15px;
       border: none;
       border-radius: 5px;
@@ -303,7 +316,8 @@ body {
       transition: background-color 0.3s ease;
     }
 
-    #neues-projekt-form button:hover, #edit-projekt-form button:hover {
+    #neues-projekt-form button:hover,
+    #edit-projekt-form button:hover {
       background-color: #45a049;
     }
 
