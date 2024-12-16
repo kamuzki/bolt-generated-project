@@ -12,6 +12,15 @@
         <div class="top-bar">
           <div class="title-container">
             <h1>Bauprotokolle</h1>
+            <div id="active-project-button-container">
+              <button id="active-project-button">
+                <span id="active-project-name"></span>
+                <div class="button-group">
+                  <button id="edit-project-button"><i class="fas fa-pencil-alt"></i></button>
+                  <button id="change-project-button"><i class="fas fa-folder-open"></i></button>
+                </div>
+              </button>
+            </div>
           </div>
           <div class="theme-toggle-container">
             <button id="theme-toggle"><i class="fas fa-sun"></i></button>
@@ -79,6 +88,32 @@
           <ul class="projekt-list" id="projekt-list">
           </ul>
           <button type="button" id="zurueck-btn">Zurück</button>
+        </div>
+      </div>
+      <div class="popup" id="edit-projekt-popup">
+        <div class="popup-content">
+          <form id="edit-projekt-form">
+            <label for="edit-projektname">Projektname:</label>
+            <input type="text" id="edit-projektname" name="edit-projektname" required><br><br>
+
+            <label for="edit-strasse">Straße:</label>
+            <input type="text" id="edit-strasse" name="edit-strasse" required><br><br>
+
+            <label for="edit-hausnummer">Hausnummer:</label>
+            <input type="text" id="edit-hausnummer" name="edit-hausnummer" required><br><br>
+
+            <label for="edit-plz">PLZ:</label>
+            <input type="text" id="edit-plz" name="edit-plz" required><br><br>
+
+            <label for="edit-ort">Ort:</label>
+            <input type="text" id="edit-ort" name="edit-ort" required><br><br>
+
+            <label for="edit-land">Land:</label>
+            <input type="text" id="edit-land" name="edit-land" required><br><br>
+
+            <button type="submit">Projekt speichern</button>
+            <button type="button" id="edit-abbrechen-btn">Abbrechen</button>
+          </form>
         </div>
       </div>
       <script type="module" src="script.js"></script>

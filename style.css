@@ -28,12 +28,51 @@ body {
 
     .title-container {
       text-align: left;
+      display: flex;
+      flex-direction: column;
     }
 
     h1 {
       color: #333;
       margin: 0;
       transition: color 0.3s ease;
+    }
+
+    #active-project-button-container {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #active-project-button {
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.3s ease;
+      position: relative;
+    }
+
+    #active-project-button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .button-group {
+      display: flex;
+    }
+
+    #edit-project-button, #change-project-button {
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+      padding: 0;
+      display: none;
     }
 
     .theme-toggle-container {
@@ -151,7 +190,10 @@ body {
     .dark-mode h1,
     .dark-mode #theme-toggle,
     .dark-mode .sidebar nav a,
-    .dark-mode #menu-toggle {
+    .dark-mode #menu-toggle,
+    .dark-mode #active-project-button,
+    .dark-mode #edit-project-button,
+    .dark-mode #change-project-button {
       color: #fff;
     }
 
@@ -231,7 +273,7 @@ body {
       z-index: 999;
     }
 
-    #neues-projekt-form {
+    #neues-projekt-form, #edit-projekt-form {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -239,19 +281,19 @@ body {
       margin: 0 auto;
     }
 
-    #neues-projekt-form label {
+    #neues-projekt-form label, #edit-projekt-form label {
       margin-bottom: 5px;
       font-weight: bold;
     }
 
-    #neues-projekt-form input {
+    #neues-projekt-form input, #edit-projekt-form input {
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ddd;
       border-radius: 5px;
     }
 
-    #neues-projekt-form button {
+    #neues-projekt-form button, #edit-projekt-form button {
       padding: 10px 15px;
       border: none;
       border-radius: 5px;
@@ -261,7 +303,7 @@ body {
       transition: background-color 0.3s ease;
     }
 
-    #neues-projekt-form button:hover {
+    #neues-projekt-form button:hover, #edit-projekt-form button:hover {
       background-color: #45a049;
     }
 

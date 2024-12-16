@@ -12,17 +12,37 @@ const themeToggle = document.getElementById('theme-toggle');
     const abbrechenBtn = document.getElementById('abbrechen-btn');
     const zurueckBtn = document.getElementById('zurueck-btn');
     const activeProjectDiv = document.getElementById('active-project');
+    const activeProjectButton = document.getElementById('active-project-button');
+    const activeProjectButtonContainer = document.getElementById('active-project-button-container');
+    const activeProjectName = document.getElementById('active-project-name');
+    const editProjectButton = document.getElementById('edit-project-button');
+    const changeProjectButton = document.getElementById('change-project-button');
+    const editProjektPopup = document.getElementById('edit-projekt-popup');
+    const editAbbrechenBtn = document.getElementById('edit-abbrechen-btn');
+    const editProjektForm = document.getElementById('edit-projekt-form');
+
+    let currentActiveProject = null;
+    let editButtonVisible = false;
 
     function displayActiveProject() {
       const activeProject = JSON.parse(localStorage.getItem('activeProject'));
       if (activeProject) {
+        activeProjectName.textContent = activeProject.projektname;
+        activeProjectButtonContainer.style.display = 'flex';
         activeProjectDiv.innerHTML = `
           <h3>Aktives Projekt:</h3>
           <p>${activeProject.projektname}</p>
-          <p>Adresse: ${activeProject.adresse.strasse} ${activeProject.adresse.hausnummer}, ${activeProject.adresse.plz} ${activeProject.adresse.ort}, ${activeProject.adresse.land}</p>
+          <p>Adresse:</p>
+          <p>${activeProject.adresse.strasse} ${activeProject.adresse.hausnummer}</p>
+          <p>${activeProject.adresse.plz} ${activeProject.adresse.ort}</p>
+          <p>${activeProject.adresse.land}</p>
         `;
+        currentActiveProject = activeProject;
       } else {
+        activeProjectName.textContent = '';
+        activeProjectButtonContainer.style.display = 'none';
         activeProjectDiv.innerHTML = '';
+        currentActiveProject = null;
       }
     }
 
@@ -54,6 +74,7 @@ const themeToggle = document.getElementById('theme-toggle');
       projektePopup.style.display = 'none';
       neuesProjektPopup.style.display = 'none';
       projektdatenbankPopup.style.display = 'none';
+      editProjektPopup.style.display = 'none';
       popupOverlay.style.display = 'none';
     });
 
@@ -93,6 +114,73 @@ const themeToggle = document.getElementById('theme-toggle');
     zurueckBtn.addEventListener('click', () => {
       projektdatenbankPopup.style.display = 'none';
       popupOverlay.style.display = 'none';
+    });
+
+    activeProjectButton.addEventListener('click', () => {
+      editButtonVisible = !editButtonVisible;
+      editProjectButton.style.display = editButtonVisible ? 'inline-block' : 'none';
+      changeProjectButton.style.display = editButtonVisible ? 'inline-block' : 'none';
+    });
+
+    editProjectButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (currentActiveProject) {
+        document.getElementById('edit-projektname').value = currentActiveProject.projektname;
+        document.getElementById('edit-strasse').value = currentActiveProject.adresse.strasse;
+        document.getElementById('edit-hausnummer').value = currentActiveProject.adresse.hausnummer;
+        document.getElementById('edit-plz').value = currentActiveProject.adresse.plz;
+        document.getElementById('edit-ort').value = currentActiveProject.adresse.ort;
+        document.getElementById('edit-land').value = currentActiveProject.adresse.land;
+        editProjektPopup.style.display = 'block';
+        popupOverlay.style.display = 'block';
+      }
+    });
+
+    changeProjectButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      projektdatenbankPopup.style.display = 'block';
+      popupOverlay.style.display = 'block';
+    });
+
+    editAbbrechenBtn.addEventListener('click', () => {
+      editProjektPopup.style.display = 'none';
+      popupOverlay.style.display = 'none';
+    });
+
+    editProjektForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const editProjektname = document.getElementById('edit-projektname').value;
+      const editStrasse = document.getElementById('edit-strasse').value;
+      const editHausnummer = document.getElementById('edit-hausnummer').value;
+      const editPlz = document.getElementById('edit-plz').value;
+      const editOrt = document.getElementById('edit-ort').value;
+      const editLand = document.getElementById('edit-land').value;
+
+      if (currentActiveProject) {
+        const updatedProject = {
+          ...currentActiveProject,
+          projektname: editProjektname,
+          adresse: {
+            strasse: editStrasse,
+            hausnummer: editHausnummer,
+            plz: editPlz,
+            ort: editOrt,
+            land: editLand
+          }
+        };
+
+        let projects = JSON.parse(localStorage.getItem('projects') || '[]');
+        const projectIndex = projects.findIndex(project => project.projektname === currentActiveProject.projektname && project.adresse.strasse === currentActiveProject.adresse.strasse && project.adresse.hausnummer === currentActiveProject.adresse.hausnummer && project.adresse.plz === currentActiveProject.adresse.plz && project.adresse.ort === currentActiveProject.adresse.ort && project.adresse.land === currentActiveProject.adresse.land);
+        if (projectIndex !== -1) {
+          projects[projectIndex] = updatedProject;
+          localStorage.setItem('projects', JSON.stringify(projects));
+        }
+        localStorage.setItem('activeProject', JSON.stringify(updatedProject));
+        displayActiveProject();
+        editProjektPopup.style.display = 'none';
+        popupOverlay.style.display = 'none';
+      }
     });
 
     document.getElementById('neues-projekt-form').addEventListener('submit', function(event) {
