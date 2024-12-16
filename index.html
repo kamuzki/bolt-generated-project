@@ -23,7 +23,7 @@
           <button id="menu-toggle"><i class="fas fa-bars"></i></button>
           <nav>
             <ul>
-              <li><a href="/projekte"><i class="fas fa-folder"></i> <span>Projekte</span></a></li>
+              <li><a href="#" id="projekte-link"><i class="fas fa-folder"></i> <span>Projekte</span></a></li>
               <li><a href="/benutzer"><i class="fas fa-users"></i> <span>Benutzer</span></a></li>
               <li><a href="/protokolle"><i class="fas fa-file-alt"></i> <span>Protokolle</span></a></li>
               <li><a href="/kontakte"><i class="fas fa-address-book"></i> <span>Kontakte</span></a></li>
@@ -33,12 +33,54 @@
         <main class="content">
           <div id="page-content">
             <p>Willkommen bei Bauprotokolle!</p>
+            <div id="active-project"></div>
           </div>
         </main>
       </div>
       <footer>
         Powered by M.D.
       </footer>
+      <div class="popup" id="projekte-popup">
+        <div class="popup-content">
+          <button id="neues-projekt-btn">Neues Projekt erstellen</button>
+          <button id="projektdatenbank-btn">Projektdatenbank</button>
+        </div>
+      </div>
+      <div class="popup-overlay" id="popup-overlay"></div>
+      <div class="popup" id="neues-projekt-popup">
+        <div class="popup-content">
+          <form id="neues-projekt-form">
+            <label for="projektname">Projektname:</label>
+            <input type="text" id="projektname" name="projektname" required><br><br>
+
+            <label for="strasse">Straße:</label>
+            <input type="text" id="strasse" name="strasse" required><br><br>
+
+            <label for="hausnummer">Hausnummer:</label>
+            <input type="text" id="hausnummer" name="hausnummer" required><br><br>
+
+            <label for="plz">PLZ:</label>
+            <input type="text" id="plz" name="plz" required><br><br>
+
+            <label for="ort">Ort:</label>
+            <input type="text" id="ort" name="ort" required><br><br>
+
+            <label for="land">Land:</label>
+            <input type="text" id="land" name="land" required><br><br>
+
+            <button type="submit">Projekt erstellen</button>
+            <button type="button" id="abbrechen-btn">Abbrechen</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup" id="projektdatenbank-popup">
+        <div class="popup-content">
+          <h2>Gespeicherte Projekte</h2>
+          <ul class="projekt-list" id="projekt-list">
+          </ul>
+          <button type="button" id="zurueck-btn">Zurück</button>
+        </div>
+      </div>
       <script type="module" src="script.js"></script>
     </body>
     </html>
