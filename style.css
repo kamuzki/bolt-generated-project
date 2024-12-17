@@ -131,9 +131,11 @@ body {
 
     .main-content {
       flex: 1;
-      margin-left: 250px;
+      margin-left: 270px;
       padding: 20px;
       transition: margin-left 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
@@ -145,8 +147,8 @@ body {
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
       position: fixed;
       top: 0;
-      left: 250px;
-      width: calc(100% - 250px);
+      left: 270px;
+      width: calc(100% - 270px);
       z-index: 9;
       transition: left 0.3s ease, width 0.3s ease;
     }
@@ -181,7 +183,9 @@ body {
 
     .content {
       padding-top: 80px;
-      padding-left: 20px; /* Add padding to the left of the content */
+      padding-left: 20px;
+      flex: 1;
+      margin-right: 20px;
     }
 
     .popup {

@@ -2,6 +2,8 @@ const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const header = document.querySelector('.header');
     const projekteLink = document.getElementById('projekte-link');
     const projektePopup = document.getElementById('projekte-popup');
     const popupOverlay = document.getElementById('popup-overlay');
@@ -82,7 +84,22 @@ const themeToggle = document.getElementById('theme-toggle');
 
     menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('collapsed');
+      updateMainContentMargin();
     });
+
+    function updateMainContentMargin() {
+      if (sidebar.classList.contains('collapsed')) {
+        mainContent.style.marginLeft = '90px';
+        header.style.left = '90px';
+        header.style.width = 'calc(100% - 90px)';
+      } else {
+        mainContent.style.marginLeft = '270px';
+        header.style.left = '270px';
+        header.style.width = 'calc(100% - 270px)';
+      }
+    }
+
+    updateMainContentMargin();
 
     function openPopup(popup) {
       popup.style.display = 'block';
