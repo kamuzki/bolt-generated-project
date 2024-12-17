@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Test Menu</title>
+      <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div class="sidebar">
+        <nav>
+          <ul>
+            <li class="main-nav-item">
+              <a href="#" id="test-link">
+                <i class="fas fa-flask"></i> <span>Test</span>
+              </a>
+              <ul class="sub-nav">
+                <li><a href="/test1.html" id="test1-link">Test 1</a></li>
+                <li><a href="/test2.html" id="test2-link">Test 2</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <script type="module">
+        import { initSidebar } from './modules/sidebar.js';
+        document.addEventListener('DOMContentLoaded', () => {
+          initSidebar();
+        });
+      </script>
+    </body>
+    </html>
