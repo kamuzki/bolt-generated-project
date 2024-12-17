@@ -1,5 +1,4 @@
-
-    const express = require('express');
+const express = require('express');
     const { createClient } = require('@libsql/client');
     const cors = require('cors');
     const bodyParser = require('body-parser');

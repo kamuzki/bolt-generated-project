@@ -1,1 +1,22 @@
 <!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Benutzerdatenbank</title>
+      <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div class="popup-overlay" id="popup-overlay"></div>
+      <div class="popup" id="benutzerdatenbank-popup">
+        <div class="popup-content">
+          <h2>Gespeicherte Benutzer</h2>
+          <ul class="benutzer-list" id="benutzer-list">
+            <!-- Hier werden die Benutzer dynamisch eingefügt -->
+          </ul>
+          <button type="button" id="benutzer-zurueck-btn" onclick="closePopup(document.getElementById('benutzerdatenbank-popup'))">Zurück</button>
+        </div>
+      </div>
+      <script type="module" src="benutzerdatenbank.js"></script>
+    </body>
+    </html>

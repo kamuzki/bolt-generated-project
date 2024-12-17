@@ -1,322 +1,382 @@
 <!DOCTYPE html>
     <html lang="de">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Bauprotokolle</title>
-      <link rel="stylesheet" href="style.css" />
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet"
-      />
-    </head>
-    <body>
-      <header>
-        <div class="top-bar">
-          <div class="title-container">
-            <h1>Bauprotokolle</h1>
-          </div>
-          <div class="theme-toggle-container">
-            <button id="theme-toggle"><i class="fas fa-sun"></i></button>
-            <div id="active-project-button-container">
-              <button id="active-project-button">
-                <span id="active-project-name"></span>
-                <div class="button-group">
-                  <button id="edit-project-button">
-                    <i class="fas fa-pencil-alt"></i>
-                  </button>
-                  <button id="change-project-button">
-                    <i class="fas fa-folder-open"></i>
-                  </button>
-                </div>
-              </button>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Bauprotokolle</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <div class="sidebar">
+          <div class="user-info">
+            <img src="https://via.placeholder.com/40x40" alt="User Avatar" class="user-avatar">
+            <div class="user-details">
+              <span class="user-name">Nick Woods</span>
+              <span class="user-email">nick.woods@gmail.com</span>
             </div>
+            <button id="menu-toggle"><i class="fas fa-chevron-left"></i></button>
           </div>
-        </div>
-        <div class="auth-buttons">
-          <button id="login-btn">Login</button>
-          <button id="register-btn">Registrieren</button>
-        </div>
-      </header>
-      <div class="container">
-        <aside class="sidebar">
-          <button id="menu-toggle"><i class="fas fa-bars"></i></button>
           <nav>
             <ul>
-              <li>
+              <li class="main-nav-item">
+                <a href="#" id="home-link"
+                  ><i class="fas fa-home"></i> <span>Home</span></a
+                >
+              </li>
+              <li class="main-nav-item">
+                <a href="#" id="notes-link"
+                  ><i class="fas fa-sticky-note"></i> <span>Notes</span></a
+                >
+              </li>
+              <li class="main-nav-item">
+                <a href="#" id="tasks-link"
+                  ><i class="fas fa-tasks"></i> <span>Tasks</span></a
+                >
+              </li>
+              <li class="separator"></li>
+              <li class="main-nav-item">
                 <a href="#" id="projekte-link"
                   ><i class="fas fa-folder"></i> <span>Projekte</span></a
                 >
+                <ul class="sub-nav">
+                  <li><a href="#" id="new-project-link">Neues Projekt</a></li>
+                  <li><a href="#" id="projektdatenbank-link">Projektdatenbank</a></li>
+                </ul>
               </li>
-              <li>
+              <li class="main-nav-item">
                 <a href="#" id="benutzer-link"
                   ><i class="fas fa-users"></i> <span>Benutzer</span></a
                 >
+                <ul class="sub-nav">
+                  <li><a href="#" id="neuer-benutzer-link">Neuer Benutzer</a></li>
+                  <li><a href="#" id="benutzerdatenbank-link">Benutzerdatenbank</a></li>
+                </ul>
               </li>
-              <li>
+              <li class="main-nav-item">
                 <a href="#" id="protokolle-link"
                   ><i class="fas fa-file-alt"></i> <span>Protokolle</span></a
                 >
+                <ul class="sub-nav">
+                  <li><a href="#" id="neues-protokoll-link">Neues Protokoll</a></li>
+                  <li><a href="#" id="protokolldatenbank-link">Protokolldatenbank</a></li>
+                </ul>
               </li>
-              <li>
+              <li class="main-nav-item">
                 <a href="#" id="kontakte-link"
                   ><i class="fas fa-address-book"></i> <span>Kontakte</span></a
                 >
+                <ul class="sub-nav">
+                  <li><a href="#" id="neuer-kontakt-link">Neuer Kontakt</a></li>
+                  <li><a href="#" id="kontakt-datenbank-link">Kontaktdatenbank</a></li>
+                </ul>
               </li>
             </ul>
           </nav>
-        </aside>
-        <main class="content">
-          <div id="page-content">
-            <p>Willkommen bei Bauprotokolle!</p>
-            <div id="active-project"></div>
+          <div class="footer-links">
+            <a href="#">Support</a>
+            <a href="#">What's New</a>
+            <a href="#">Privacy Policy</a>
           </div>
-        </main>
-      </div>
-      <footer>Powered by M.D.</footer>
-      <div class="popup" id="projekte-popup">
-        <div class="popup-content">
-          <button id="neues-projekt-btn">Neues Projekt erstellen</button>
-          <button id="projektdatenbank-btn">Projektdatenbank</button>
         </div>
-      </div>
-      <div class="popup" id="benutzer-popup">
-        <div class="popup-content">
-          <button id="neuer-benutzer-btn">Neuen Benutzer anlegen</button>
-          <button id="benutzerdatenbank-btn">Benutzerdatenbank</button>
+        <div class="main-content">
+          <header>
+            <div class="header-title">
+              <h1>Baumanagement</h1>
+            </div>
+            <div class="auth-buttons">
+              <button id="login-btn">Login</button>
+              <button id="register-btn">Registrieren</button>
+            </div>
+          </header>
+          <main class="content">
+            <div id="page-content">
+              <p>Willkommen bei Bauprotokolle!</p>
+              <div id="active-project"></div>
+            </div>
+          </main>
         </div>
-      </div>
-      <div class="popup" id="protokolle-popup">
-        <div class="popup-content">
-          <button id="neues-protokoll-btn">Neues Protokoll erstellen</button>
-          <button id="protokolldatenbank-btn">Protokolldatenbank</button>
+        <div class="popup-overlay" id="popup-overlay"></div>
+        <div class="popup" id="projekte-popup">
+          <div class="popup-content">
+            <button id="neues-projekt-btn">Neues Projekt erstellen</button>
+            <button id="projektdatenbank-btn">Projektdatenbank</button>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="kontakte-popup">
-        <div class="popup-content">
-          <button id="neuer-kontakt-btn">Neuen Kontakt anlegen</button>
-          <button id="kontakt-datenbank-btn">Kontaktdatenbank</button>
+        <div class="popup" id="benutzer-popup">
+          <div class="popup-content">
+            <button id="neuer-benutzer-btn">Neuen Benutzer anlegen</button>
+            <button id="benutzerdatenbank-btn">Benutzerdatenbank</button>
+          </div>
         </div>
-      </div>
-      <div class="popup-overlay" id="popup-overlay"></div>
-      <div class="popup" id="neues-projekt-popup">
-        <div class="popup-content">
-          <form id="neues-projekt-form">
-            <label for="projektname">Projektname:</label>
-            <input type="text" id="projektname" name="projektname" required /><br /><br />
-
-            <label for="strasse">Straße:</label>
-            <input type="text" id="strasse" name="strasse" required /><br /><br />
-
-            <label for="hausnummer">Hausnummer:</label>
-            <input
-              type="text"
-              id="hausnummer"
-              name="hausnummer"
-              required
-            /><br /><br />
-
-            <label for="plz">PLZ:</label>
-            <input type="text" id="plz" name="plz" required /><br /><br />
-
-            <label for="ort">Ort:</label>
-            <input type="text" id="ort" name="ort" required /><br /><br />
-
-            <label for="land">Land:</label>
-            <input type="text" id="land" name="land" required /><br /><br />
-
-            <button type="submit">Projekt erstellen</button>
-            <button type="button" id="abbrechen-btn">Abbrechen</button>
-          </form>
+        <div class="popup" id="protokolle-popup">
+          <div class="popup-content">
+            <button id="neues-protokoll-btn">Neues Protokoll erstellen</button>
+            <button id="protokolldatenbank-btn">Protokolldatenbank</button>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="projektdatenbank-popup">
-        <div class="popup-content">
-          <h2>Gespeicherte Projekte</h2>
-          <ul class="projekt-list" id="projekt-list"></ul>
-          <button type="button" id="zurueck-btn">Zurück</button>
+        <div class="popup" id="kontakte-popup">
+          <div class="popup-content">
+            <button id="neuer-kontakt-btn">Neuen Kontakt anlegen</button>
+            <button id="kontakt-datenbank-btn">Kontaktdatenbank</button>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="edit-projekt-popup">
-        <div class="popup-content">
-          <form id="edit-projekt-form">
-            <label for="edit-projektname">Projektname:</label>
-            <input
-              type="text"
-              id="edit-projektname"
-              name="edit-projektname"
-              required
-            /><br /><br />
-
-            <label for="edit-strasse">Straße:</label>
-            <input
-              type="text"
-              id="edit-strasse"
-              name="edit-strasse"
-              required
-            /><br /><br />
-
-            <label for="edit-hausnummer">Hausnummer:</label>
-            <input
-              type="text"
-              id="edit-hausnummer"
-              name="edit-hausnummer"
-              required
-            /><br /><br />
-
-            <label for="edit-plz">PLZ:</label>
-            <input type="text" id="edit-plz" name="edit-plz" required /><br /><br />
-
-            <label for="edit-ort">Ort:</label>
-            <input type="text" id="edit-ort" name="edit-ort" required /><br /><br />
-
-            <label for="edit-land">Land:</label>
-            <input type="text" id="edit-land" name="edit-land" required /><br /><br />
-
-            <button type="submit">Projekt speichern</button>
-            <button type="button" id="edit-abbrechen-btn">Abbrechen</button>
-          </form>
+        <div class="popup" id="neues-projekt-popup">
+          <div class="popup-content">
+            <form id="neues-projekt-form">
+              <label for="projektname">Projektname:</label>
+              <input type="text" id="projektname" name="projektname" required /><br /><br />
+  
+              <label for="strasse">Straße:</label>
+              <input type="text" id="strasse" name="strasse" required /><br /><br />
+  
+              <label for="hausnummer">Hausnummer:</label>
+              <input
+                type="text"
+                id="hausnummer"
+                name="hausnummer"
+                required
+              /><br /><br />
+  
+              <label for="plz">PLZ:</label>
+              <input type="text" id="plz" name="plz" required /><br /><br />
+  
+              <label for="ort">Ort:</label>
+              <input type="text" id="ort" name="ort" required /><br /><br />
+  
+              <label for="land">Land:</label>
+              <input type="text" id="land" name="land" required /><br /><br />
+  
+              <button type="submit">Projekt erstellen</button>
+              <button type="button" id="abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="neuer-kontakt-popup">
-        <div class="popup-content">
-          <form id="neuer-kontakt-form">
-            <label for="kontakt-geschlecht">Geschlecht:</label>
-            <select id="kontakt-geschlecht" name="kontakt-geschlecht" required>
-              <option value="männlich">Männlich</option>
-              <option value="weiblich">Weiblich</option>
-              <option value="divers">Divers</option>
-            </select><br><br>
-
-            <label for="kontakt-vorname">Vorname:</label>
-            <input type="text" id="kontakt-vorname" name="kontakt-vorname" required><br><br>
-
-            <label for="kontakt-nachname">Nachname:</label>
-            <input type="text" id="kontakt-nachname" name="kontakt-nachname" required><br><br>
-
-            <label for="kontakt-email">E-Mail:</label>
-            <input type="email" id="kontakt-email" name="kontakt-email" required><br><br>
-
-            <label for="kontakt-nummer">Telefonnummer:</label>
-            <input type="tel" id="kontakt-nummer" name="kontakt-nummer" required><br><br>
-
-            <label for="kontakt-firma">Firma:</label>
-            <input type="text" id="kontakt-firma" name="kontakt-firma"><br><br>
-
-            <label for="kontakt-adresse">Adresse:</label>
-            <input type="text" id="kontakt-adresse" name="kontakt-adresse"><br><br>
-
-            <button type="submit">Kontakt erstellen</button>
-            <button type="button" id="kontakt-abbrechen-btn">Abbrechen</button>
-          </form>
+        <div class="popup" id="projektdatenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Projekte</h2>
+            <ul class="projekt-list" id="projekt-list"></ul>
+            <button type="button" id="zurueck-btn">Zurück</button>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="kontakt-datenbank-popup">
-        <div class="popup-content">
-          <h2>Gespeicherte Kontakte</h2>
-          <ul class="kontakt-list" id="kontakt-list"></ul>
-          <button type="button" id="kontakt-zurueck-btn">Zurück</button>
+        <div class="popup" id="edit-projekt-popup">
+          <div class="popup-content">
+            <form id="edit-projekt-form">
+              <label for="edit-projektname">Projektname:</label>
+              <input
+                type="text"
+                id="edit-projektname"
+                name="edit-projektname"
+                required
+              /><br /><br />
+  
+              <label for="edit-strasse">Straße:</label>
+              <input
+                type="text"
+                id="edit-strasse"
+                name="edit-strasse"
+                required
+              /><br /><br />
+  
+              <label for="edit-hausnummer">Hausnummer:</label>
+              <input
+                type="text"
+                id="edit-hausnummer"
+                name="edit-hausnummer"
+                required
+              /><br /><br />
+  
+              <label for="edit-plz">PLZ:</label>
+              <input type="text" id="edit-plz" name="edit-plz" required /><br /><br />
+  
+              <label for="edit-ort">Ort:</label>
+              <input type="text" id="edit-ort" name="edit-ort" required /><br /><br />
+  
+              <label for="edit-land">Land:</label>
+              <input type="text" id="edit-land" name="edit-land" required /><br /><br />
+  
+              <button type="submit">Projekt speichern</button>
+              <button type="button" id="edit-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="edit-kontakt-popup">
-        <div class="popup-content">
-          <form id="edit-kontakt-form">
-            <label for="edit-kontakt-geschlecht">Geschlecht:</label>
-            <select id="edit-kontakt-geschlecht" name="edit-kontakt-geschlecht" required>
-              <option value="männlich">Männlich</option>
-              <option value="weiblich">Weiblich</option>
-              <option value="divers">Divers</option>
-            </select><br><br>
-
-            <label for="edit-kontakt-vorname">Vorname:</label>
-            <input type="text" id="edit-kontakt-vorname" name="edit-kontakt-vorname" required><br><br>
-
-            <label for="edit-kontakt-nachname">Nachname:</label>
-            <input type="text" id="edit-kontakt-nachname" name="edit-kontakt-nachname" required><br><br>
-
-            <label for="edit-kontakt-email">E-Mail:</label>
-            <input type="email" id="edit-kontakt-email" name="edit-kontakt-email" required><br><br>
-
-            <label for="edit-kontakt-nummer">Telefonnummer:</label>
-            <input type="tel" id="edit-kontakt-nummer" name="edit-kontakt-nummer" required><br><br>
-
-            <label for="edit-kontakt-firma">Firma:</label>
-            <input type="text" id="edit-kontakt-firma" name="edit-kontakt-firma"><br><br>
-
-            <label for="edit-kontakt-adresse">Adresse:</label>
-            <input type="text" id="edit-kontakt-adresse" name="edit-kontakt-adresse"><br><br>
-
-            <button type="submit">Kontakt speichern</button>
-            <button type="button" id="edit-kontakt-abbrechen-btn">Abbrechen</button>
-          </form>
+        <div class="popup" id="neuer-kontakt-popup">
+          <div class="popup-content">
+            <form id="neuer-kontakt-form">
+              <label for="kontakt-geschlecht">Geschlecht:</label>
+              <select id="kontakt-geschlecht" name="kontakt-geschlecht" required>
+                <option value="männlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select><br><br>
+  
+              <label for="kontakt-vorname">Vorname:</label>
+              <input type="text" id="kontakt-vorname" name="kontakt-vorname" required><br><br>
+  
+              <label for="kontakt-nachname">Nachname:</label>
+              <input type="text" id="kontakt-nachname" name="kontakt-nachname" required><br><br>
+  
+              <label for="kontakt-email">E-Mail:</label>
+              <input type="email" id="kontakt-email" name="kontakt-email" required><br><br>
+  
+              <label for="kontakt-nummer">Telefonnummer:</label>
+              <input type="tel" id="kontakt-nummer" name="kontakt-nummer" required><br><br>
+  
+              <label for="kontakt-firma">Firma:</label>
+              <input type="text" id="kontakt-firma" name="kontakt-firma"><br><br>
+  
+              <label for="kontakt-adresse">Adresse:</label>
+              <input type="text" id="kontakt-adresse" name="kontakt-adresse"><br><br>
+  
+              <button type="submit">Kontakt erstellen</button>
+              <button type="button" id="kontakt-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="benutzerdatenbank-popup">
-        <div class="popup-content">
-          <h2>Gespeicherte Benutzer</h2>
-          <ul class="benutzer-list" id="benutzer-list"></ul>
-          <button type="button" id="benutzer-zurueck-btn">Zurück</button>
+        <div class="popup" id="kontakt-datenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Kontakte</h2>
+            <ul class="kontakt-list" id="kontakt-list"></ul>
+            <button type="button" id="kontakt-zurueck-btn">Zurück</button>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="protokolldatenbank-popup">
-        <div class="popup-content">
-          <h2>Gespeicherte Protokolle</h2>
-          <ul class="protokoll-list" id="protokoll-list"></ul>
-          <button type="button" id="protokoll-zurueck-btn">Zurück</button>
+        <div class="popup" id="edit-kontakt-popup">
+          <div class="popup-content">
+            <form id="edit-kontakt-form">
+              <label for="edit-kontakt-geschlecht">Geschlecht:</label>
+              <select id="edit-kontakt-geschlecht" name="edit-kontakt-geschlecht" required>
+                <option value="männlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select><br><br>
+  
+              <label for="edit-kontakt-vorname">Vorname:</label>
+              <input type="text" id="edit-kontakt-vorname" name="edit-kontakt-vorname" required><br><br>
+  
+              <label for="edit-kontakt-nachname">Nachname:</label>
+              <input type="text" id="edit-kontakt-nachname" name="edit-kontakt-nachname" required><br><br>
+  
+              <label for="edit-kontakt-email">E-Mail:</label>
+              <input type="email" id="edit-kontakt-email" name="edit-kontakt-email" required><br><br>
+  
+              <label for="edit-kontakt-nummer">Telefonnummer:</label>
+              <input type="tel" id="edit-kontakt-nummer" name="edit-kontakt-nummer" required><br><br>
+  
+              <label for="edit-kontakt-firma">Firma:</label>
+              <input type="text" id="edit-kontakt-firma" name="edit-kontakt-firma"><br><br>
+  
+              <label for="edit-kontakt-adresse">Adresse:</label>
+              <input type="text" id="edit-kontakt-adresse" name="edit-kontakt-adresse"><br><br>
+  
+              <button type="submit">Kontakt speichern</button>
+              <button type="button" id="edit-kontakt-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="popup" id="neues-protokoll-popup">
-        <div class="popup-content">
-          <form id="neues-protokoll-form">
-            <label for="project_id">Projekt:</label>
-            <select id="project_id" name="project_id" required>
-            </select><br><br>
-
-            <label for="date">Datum:</label>
-            <input type="date" id="date" name="date" required><br><br>
-
-            <label for="description">Beschreibung:</label>
-            <textarea id="description" name="description" required></textarea><br><br>
-
-            <label for="type">Typ:</label>
-            <select id="type" name="type" required>
-              <option value="Aufgabe">Aufgabe</option>
-              <option value="Entscheidung">Entscheidung</option>
-              <option value="Information">Information</option>
-            </select><br><br>
-
-            <label for="contact_id">Zuständig:</label>
-            <select id="contact_id" name="contact_id">
-            </select><br><br>
-
-            <label for="deadline">Frist:</label>
-            <input type="date" id="deadline" name="deadline"><br><br>
-
-            <label for="status">Status:</label>
-            <select id="status" name="status">
-              <option value="Offen">Offen</option>
-              <option value="In Bearbeitung">In Bearbeitung</option>
-              <option value="Erledigt">Erledigt</option>
-            </select><br><br>
-
-            <label for="comments">Kommentare:</label>
-            <textarea id="comments" name="comments"></textarea><br><br>
-
-            <label for="checkbox">Checkbox:</label>
-            <input type="checkbox" id="checkbox" name="checkbox" value="true"><br><br>
-
-            <button type="submit">Protokollpunkt erstellen</button>
-            <button type="button" id="protokoll-abbrechen-btn">Abbrechen</button>
-          </form>
+        <div class="popup" id="benutzerdatenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Benutzer</h2>
+            <ul class="benutzer-list" id="benutzer-list"></ul>
+            <button type="button" id="benutzer-zurueck-btn" onclick="closePopup(document.getElementById('benutzerdatenbank-popup'))">Zurück</button>
+          </div>
         </div>
-      </div>
-      <script type="module" src="script.js"></script>
-    </body>
+        <div class="popup" id="protokolldatenbank-popup">
+          <div class="popup-content">
+            <h2>Gespeicherte Protokolle</h2>
+            <ul class="protokoll-list" id="protokoll-list"></ul>
+            <button type="button" id="protokoll-zurueck-btn">Zurück</button>
+          </div>
+        </div>
+        <div class="popup" id="neues-protokoll-popup">
+          <div class="popup-content">
+            <form id="neues-protokoll-form">
+              <label for="project_id">Projekt:</label>
+              <select id="project_id" name="project_id" required>
+              </select><br><br>
+  
+              <label for="date">Datum:</label>
+              <input type="date" id="date" name="date" required><br><br>
+  
+              <label for="description">Beschreibung:</label>
+              <textarea id="description" name="description" required></textarea><br><br>
+  
+              <label for="type">Typ:</label>
+              <select id="type" name="type" required>
+                <option value="Aufgabe">Aufgabe</option>
+                <option value="Entscheidung">Entscheidung</option>
+                <option value="Information">Information</option>
+              </select><br><br>
+  
+              <label for="contact_id">Zuständig:</label>
+              <select id="contact_id" name="contact_id">
+              </select><br><br>
+  
+              <label for="deadline">Frist:</label>
+              <input type="date" id="deadline" name="deadline"><br><br>
+  
+              <label for="status">Status:</label>
+              <select id="status" name="status">
+                <option value="Offen">Offen</option>
+                <option value="In Bearbeitung">In Bearbeitung</option>
+                <option value="Erledigt">Erledigt</option>
+              </select><br><br>
+  
+              <label for="comments">Kommentare:</label>
+              <textarea id="comments" name="comments"></textarea><br><br>
+  
+              <label for="checkbox">Checkbox:</label>
+              <input type="checkbox" id="checkbox" name="checkbox" value="true"><br><br>
+  
+              <button type="submit">Protokollpunkt erstellen</button>
+              <button type="button" id="protokoll-abbrechen-btn">Abbrechen</button>
+            </form>
+          </div>
+        </div>
+        <div class="popup" id="neuer-benutzer-popup">
+          <div class="popup-content">
+            <form id="neuer-benutzer-form">
+              <label for="vorname">Vorname:</label>
+              <input type="text" id="vorname" name="vorname" required><br><br>
+  
+              <label for="nachname">Nachname:</label>
+              <input type="text" id="nachname" name="nachname" required><br><br>
+  
+              <label for="email">E-Mail:</label>
+              <input type="email" id="email" name="email" required><br><br>
+  
+              <label for="passwort">Passwort:</label>
+              <input type="password" id="passwort" name="passwort" required><br><br>
+  
+              <button type="submit">Benutzer erstellen</button>
+            </form>
+          </div>
+        </div>
+        <div id="active-project-button-container">
+          <button id="active-project-button">
+            <span id="active-project-name"></span>
+            <div class="button-group">
+              <button id="edit-project-button">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+              <button id="change-project-button">
+                <i class="fas fa-folder-open"></i>
+              </button>
+            </div>
+          </button>
+        </div>
+        <div class="theme-toggle-container">
+          <button id="theme-toggle"><i class="fas fa-sun"></i></button>
+        </div>
+        <script type="module" src="script.js"></script>
+      </body>
     </html>

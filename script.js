@@ -36,6 +36,8 @@ const themeToggle = document.getElementById('theme-toggle');
     const neuesProtokollPopup = document.getElementById('neues-protokoll-popup');
     const protokollAbbrechenBtn = document.getElementById('protokoll-abbrechen-btn');
     const neuerKontaktPopup = document.getElementById('neuer-kontakt-popup');
+    const neuerBenutzerPopup = document.getElementById('neuer-benutzer-popup');
+    const benutzerdatenbankPopup = document.getElementById('benutzerdatenbank-popup');
 
     let currentActiveProject = null;
     let editButtonVisible = false;
@@ -304,12 +306,13 @@ const themeToggle = document.getElementById('theme-toggle');
 
     neuerBenutzerBtn.addEventListener('click', () => {
       closePopup(benutzerPopup);
-      window.location.href = '/neuer-benutzer.html';
+      openPopup(neuerBenutzerPopup);
     });
 
     benutzerdatenbankBtn.addEventListener('click', () => {
       closePopup(benutzerPopup);
-      window.location.href = '/benutzerdatenbank.html';
+      // Benutzerdatenbank als Popup öffnen
+      fetchBenutzerdatenbank();
     });
 
     kontakteLink.addEventListener('click', (e) => {
@@ -334,3 +337,24 @@ const themeToggle = document.getElementById('theme-toggle');
     protokollAbbrechenBtn.addEventListener('click', () => {
       closePopup(neuesProtokollPopup);
     });
+
+    // Funktion zum Abrufen und Anzeigen der Benutzerdatenbank im Popup
+    function fetchBenutzerdatenbank() {
+      openPopup(benutzerdatenbankPopup);
+      const benutzerList = document.getElementById('benutzer-list');
+      benutzerList.innerHTML = '';
+
+      fetch('http://localhost:3000/users')
+        .then(response => response.json())
+        .then(users => {
+          users.forEach(user => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+              <h3>${user.vorname} ${user.nachname}</h3>
+              <p>Email: ${user.email}</p>
+            `;
+            benutzerList.appendChild(listItem);
+          });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+    }
