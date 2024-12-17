@@ -453,3 +453,8 @@ body {
     #neues-protokoll-form button[type="button"]:hover {
         background-color: #da190b;
     }
+
+    .popup-content {
+      max-height: 80vh;
+      overflow-y: auto;
+    }

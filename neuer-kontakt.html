@@ -1,55 +1,48 @@
-<!DOCTYPE html>
-    <html lang="de">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Neuer Kontakt</title>
-      <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-      <header>
-        <div class="top-bar">
-          <div class="title-container">
-            <h1>Neuer Kontakt</h1>
-          </div>
-        </div>
-      </header>
-      <div class="container">
-        <main class="content">
-          <form id="neuer-kontakt-form">
-            <label for="kontakt-geschlecht">Geschlecht:</label>
-            <select id="kontakt-geschlecht" name="kontakt-geschlecht" required>
-              <option value="männlich">Männlich</option>
-              <option value="weiblich">Weiblich</option>
-              <option value="divers">Divers</option>
-            </select><br><br>
+document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('neuer-kontakt-form');
+      const kontaktAbbrechenBtn = document.getElementById('kontakt-abbrechen-btn');
+      const neuerKontaktPopup = document.getElementById('neuer-kontakt-popup');
 
-            <label for="kontakt-vorname">Vorname:</label>
-            <input type="text" id="kontakt-vorname" name="kontakt-vorname" required><br><br>
+      kontaktAbbrechenBtn.addEventListener('click', () => {
+        closePopup(neuerKontaktPopup);
+      });
 
-            <label for="kontakt-nachname">Nachname:</label>
-            <input type="text" id="kontakt-nachname" name="kontakt-nachname" required><br><br>
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-            <label for="kontakt-email">E-Mail:</label>
-            <input type="email" id="kontakt-email" name="kontakt-email" required><br><br>
+        const geschlecht = document.getElementById('kontakt-geschlecht').value;
+        const vorname = document.getElementById('kontakt-vorname').value;
+        const nachname = document.getElementById('kontakt-nachname').value;
+        const email = document.getElementById('kontakt-email').value;
+        const nummer = document.getElementById('kontakt-nummer').value;
+        const firma = document.getElementById('kontakt-firma').value;
+        const adresse = document.getElementById('kontakt-adresse').value;
 
-            <label for="kontakt-nummer">Telefonnummer:</label>
-            <input type="tel" id="kontakt-nummer" name="kontakt-nummer" required><br><br>
-
-            <label for="kontakt-firma">Firma:</label>
-            <input type="text" id="kontakt-firma" name="kontakt-firma"><br><br>
-
-            <label for="kontakt-adresse">Adresse:</label>
-            <input type="text" id="kontakt-adresse" name="kontakt-adresse"><br><br>
-
-            <button type="submit">Kontakt erstellen</button>
-            <button type="button" id="kontakt-abbrechen-btn">Abbrechen</button>
-          </form>
-        </main>
-      </div>
-      <footer>
-        Powered by M.D.
-      </footer>
-      <script type="module" src="neuer-kontakt.js"></script>
-    </body>
-    </html>
+        fetch('http://localhost:3000/contacts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            geschlecht: geschlecht,
+            vorname: vorname,
+            nachname: nachname,
+            email: email,
+            nummer: nummer,
+            firma: firma,
+            adresse: adresse
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          alert('Kontakt erfolgreich erstellt!');
+          closePopup(neuerKontaktPopup);
+          window.location.href = '/kontakt-datenbank.html';
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          alert('Fehler beim Erstellen des Kontakts.');
+        });
+      });
+    });
