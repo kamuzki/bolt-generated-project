@@ -18,7 +18,12 @@ document.getElementById('neuer-benutzer-form').addEventListener('submit', functi
           passwort: passwort
         }),
       })
-      .then(response => response.json())
+      .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
       .then(data => {
         console.log('Success:', data);
         alert('Benutzer erfolgreich erstellt!');

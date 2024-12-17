@@ -87,6 +87,8 @@ const themeToggle = document.getElementById('theme-toggle');
       popup.classList.add('active');
       popupOverlay.style.display = 'block';
       popupOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      adjustPopupSize(popup);
     }
 
     function closePopup(popup) {
@@ -95,7 +97,29 @@ const themeToggle = document.getElementById('theme-toggle');
       setTimeout(() => {
         popup.style.display = 'none';
         popupOverlay.style.display = 'none';
+        document.body.style.overflow = '';
       }, 300);
+    }
+
+    function adjustPopupSize(popup) {
+      const popupContent = popup.querySelector('.popup-content');
+      popup.style.height = 'auto';
+      popup.style.width = 'auto';
+      popupContent.style.maxHeight = '80vh';
+      popupContent.style.maxWidth = '90vw';
+
+      const maxHeight = window.innerHeight * 0.9;
+      const maxWidth = window.innerWidth * 0.9;
+
+      if (popup.offsetHeight > maxHeight) {
+        popup.style.height = `${maxHeight}px`;
+        popupContent.style.maxHeight = `${maxHeight - 50}px`;
+      }
+
+      if (popup.offsetWidth > maxWidth) {
+        popup.style.width = `${maxWidth}px`;
+        popupContent.style.maxWidth = `${maxWidth - 50}px`;
+      }
     }
 
     projekteLink.addEventListener('click', (e) => {
@@ -112,7 +136,7 @@ const themeToggle = document.getElementById('theme-toggle');
       closePopup(benutzerPopup);
       closePopup(kontaktePopup);
       closePopup(neuesProtokollPopup);
-      closePopup(neuerKontaktPopup);
+       closePopup(neuerKontaktPopup);
     });
 
     neuesProjektBtn.addEventListener('click', () => {

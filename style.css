@@ -251,8 +251,10 @@ body {
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 1000;
-      width: 60%;
-      max-width: 800px;
+      width: auto;
+      max-width: 90vw;
+      height: auto;
+      max-height: 90vh;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
@@ -264,6 +266,9 @@ body {
     .popup-content {
       display: flex;
       flex-direction: column;
+      max-height: 80vh;
+      overflow-y: auto;
+      max-width: 90vw;
     }
 
     .popup-content button {
@@ -452,9 +457,4 @@ body {
 
     #neues-protokoll-form button[type="button"]:hover {
         background-color: #da190b;
-    }
-
-    .popup-content {
-      max-height: 80vh;
-      overflow-y: auto;
     }
