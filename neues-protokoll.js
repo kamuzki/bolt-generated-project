@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
-      // ... (Dropdown population logic remains the same)
+      const form = document.getElementById('neues-protokoll-form');
+      const projectSelect = document.getElementById('project_id');
+      const contactSelect = document.getElementById('contact_id');
+
+      // Fetch projects and populate the dropdown
+      fetch('http://localhost:3000/projects')
+        .then(response => response.json())
+        .then(projects => {
+          projects.forEach(project => {
+            const option = document.createElement('option');
+            option.value = project.id;
+            option.text = project.projektname;
+            projectSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Error fetching projects:', error));
+
+      // Fetch contacts and populate the dropdown
+      fetch('http://localhost:3000/contacts')
+        .then(response => response.json())
+        .then(contacts => {
+          contacts.forEach(contact => {
+            const option = document.createElement('option');
+            option.value = contact.id;
+            option.text = `${contact.vorname} ${contact.nachname}`;
+            contactSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Error fetching contacts:', error));
 
       form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -45,14 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
+            alert('Protokollpunkt erfolgreich erstellt!');
             window.location.href = '/protokolldatenbank.html';
           })
           .catch((error) => {
             console.error('Error creating protocol item:', error);
+            alert('Fehler beim Erstellen des Protokollpunkts.');
           });
         })
         .catch((error) => {
           console.error('Error creating protocol:', error);
+          alert('Fehler beim Erstellen des Protokolls.');
         });
       });
     });

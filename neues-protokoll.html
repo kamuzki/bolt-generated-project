@@ -7,15 +7,9 @@
       <link rel="stylesheet" href="style.css">
     </head>
     <body>
-      <header>
-        <div class="top-bar">
-          <div class="title-container">
-            <h1>Neues Protokoll</h1>
-          </div>
-        </div>
-      </header>
-      <div class="container">
-        <main class="content">
+      <div class="popup-overlay" id="popup-overlay"></div>
+      <div class="popup active" id="neues-protokoll-popup">
+        <div class="popup-content">
           <form id="neues-protokoll-form">
             <label for="project_id">Projekt:</label>
             <select id="project_id" name="project_id" required>
@@ -52,12 +46,10 @@
             <textarea id="comments" name="comments"></textarea><br><br>
 
             <button type="submit">Protokollpunkt erstellen</button>
+            <button type="button" id="protokoll-abbrechen-btn">Abbrechen</button>
           </form>
-        </main>
+        </div>
       </div>
-      <footer>
-        Powered by M.D.
-      </footer>
       <script type="module" src="neues-protokoll.js"></script>
     </body>
     </html>

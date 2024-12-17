@@ -24,6 +24,18 @@ const themeToggle = document.getElementById('theme-toggle');
     const protokollePopup = document.getElementById('protokolle-popup');
     const neuesProtokollBtn = document.getElementById('neues-protokoll-btn');
     const protokolldatenbankBtn = document.getElementById('protokolldatenbank-btn');
+    const benutzerLink = document.getElementById('benutzer-link');
+    const benutzerPopup = document.getElementById('benutzer-popup');
+    const neuerBenutzerBtn = document.getElementById('neuer-benutzer-btn');
+    const benutzerdatenbankBtn = document.getElementById('benutzerdatenbank-btn');
+    const kontakteLink = document.getElementById('kontakte-link');
+    const kontaktePopup = document.getElementById('kontakte-popup');
+    const neuerKontaktBtn = document.getElementById('neuer-kontakt-btn');
+    const kontaktDatenbankBtn = document.getElementById('kontakt-datenbank-btn');
+    const kontaktAbbrechenBtn = document.getElementById('kontakt-abbrechen-btn');
+    const neuesProtokollPopup = document.getElementById('neues-protokoll-popup');
+    const protokollAbbrechenBtn = document.getElementById('protokoll-abbrechen-btn');
+    const neuerKontaktPopup = document.getElementById('neuer-kontakt-popup');
 
     let currentActiveProject = null;
     let editButtonVisible = false;
@@ -70,29 +82,47 @@ const themeToggle = document.getElementById('theme-toggle');
       sidebar.classList.toggle('collapsed');
     });
 
+    function openPopup(popup) {
+      popup.style.display = 'block';
+      popup.classList.add('active');
+      popupOverlay.style.display = 'block';
+      popupOverlay.classList.add('active');
+    }
+
+    function closePopup(popup) {
+      popup.classList.remove('active');
+      popupOverlay.classList.remove('active');
+      setTimeout(() => {
+        popup.style.display = 'none';
+        popupOverlay.style.display = 'none';
+      }, 300);
+    }
+
     projekteLink.addEventListener('click', (e) => {
       e.preventDefault();
-      projektePopup.style.display = 'block';
-      popupOverlay.style.display = 'block';
+      openPopup(projektePopup);
     });
 
     popupOverlay.addEventListener('click', () => {
-      projektePopup.style.display = 'none';
-      neuesProjektPopup.style.display = 'none';
-      projektdatenbankPopup.style.display = 'none';
-      editProjektPopup.style.display = 'none';
-      protokollePopup.style.display = 'none';
-      popupOverlay.style.display = 'none';
+      closePopup(projektePopup);
+      closePopup(neuesProjektPopup);
+      closePopup(projektdatenbankPopup);
+      closePopup(editProjektPopup);
+      closePopup(protokollePopup);
+      closePopup(benutzerPopup);
+      closePopup(kontaktePopup);
+      closePopup(neuesProtokollPopup);
+      closePopup(neuerKontaktPopup);
     });
 
     neuesProjektBtn.addEventListener('click', () => {
-      projektePopup.style.display = 'none';
-      neuesProjektPopup.style.display = 'block';
+      closePopup(projektePopup);
+      openPopup(neuesProjektPopup);
     });
 
     projektdatenbankBtn.addEventListener('click', () => {
-      projektePopup.style.display = 'none';
-      projektdatenbankPopup.style.display = 'block';
+      closePopup(projektePopup);
+      openPopup(projektdatenbankPopup);
       const projektList = document.getElementById('projekt-list');
       projektList.innerHTML = '';
       const projects = JSON.parse(localStorage.getItem('projects') || '[]');
@@ -106,21 +136,18 @@ const themeToggle = document.getElementById('theme-toggle');
         listItem.addEventListener('click', () => {
           localStorage.setItem('activeProject', JSON.stringify(project));
           displayActiveProject();
-          projektdatenbankPopup.style.display = 'none';
-          popupOverlay.style.display = 'none';
+          closePopup(projektdatenbankPopup);
         });
         projektList.appendChild(listItem);
       });
     });
 
     abbrechenBtn.addEventListener('click', () => {
-      neuesProjektPopup.style.display = 'none';
-      popupOverlay.style.display = 'none';
+      closePopup(neuesProjektPopup);
     });
 
     zurueckBtn.addEventListener('click', () => {
-      projektdatenbankPopup.style.display = 'none';
-      popupOverlay.style.display = 'none';
+      closePopup(projektdatenbankPopup);
     });
 
     activeProjectButton.addEventListener('click', () => {
@@ -138,20 +165,17 @@ const themeToggle = document.getElementById('theme-toggle');
         document.getElementById('edit-plz').value = currentActiveProject.adresse.plz;
         document.getElementById('edit-ort').value = currentActiveProject.adresse.ort;
         document.getElementById('edit-land').value = currentActiveProject.adresse.land;
-        editProjektPopup.style.display = 'block';
-        popupOverlay.style.display = 'block';
+        openPopup(editProjektPopup);
       }
     });
 
     changeProjectButton.addEventListener('click', (event) => {
       event.stopPropagation();
-      projektdatenbankPopup.style.display = 'block';
-      popupOverlay.style.display = 'block';
+      openPopup(projektdatenbankPopup);
     });
 
     editAbbrechenBtn.addEventListener('click', () => {
-      editProjektPopup.style.display = 'none';
-      popupOverlay.style.display = 'none';
+      closePopup(editProjektPopup);
     });
 
     editProjektForm.addEventListener('submit', function(event) {
@@ -185,8 +209,7 @@ const themeToggle = document.getElementById('theme-toggle');
         }
         localStorage.setItem('activeProject', JSON.stringify(updatedProject));
         displayActiveProject();
-        editProjektPopup.style.display = 'none';
-        popupOverlay.style.display = 'none';
+        closePopup(editProjektPopup);
       }
     });
 
@@ -217,8 +240,8 @@ const themeToggle = document.getElementById('theme-toggle');
       localStorage.setItem('activeProject', JSON.stringify(newProject));
       displayActiveProject();
 
-      neuesProjektPopup.style.display = 'none';
-      projektdatenbankPopup.style.display = 'block';
+      closePopup(neuesProjektPopup);
+      openPopup(projektdatenbankPopup);
       const projektList = document.getElementById('projekt-list');
       projektList.innerHTML = '';
       const updatedProjects = JSON.parse(localStorage.getItem('projects') || '[]');
@@ -232,8 +255,7 @@ const themeToggle = document.getElementById('theme-toggle');
         listItem.addEventListener('click', () => {
           localStorage.setItem('activeProject', JSON.stringify(project));
           displayActiveProject();
-          projektdatenbankPopup.style.display = 'none';
-          popupOverlay.style.display = 'none';
+          closePopup(projektdatenbankPopup);
         });
         projektList.appendChild(listItem);
       });
@@ -241,16 +263,53 @@ const themeToggle = document.getElementById('theme-toggle');
 
     protokolleLink.addEventListener('click', (e) => {
       e.preventDefault();
-      protokollePopup.style.display = 'block';
-      popupOverlay.style.display = 'block';
+      openPopup(protokollePopup);
     });
 
     neuesProtokollBtn.addEventListener('click', () => {
-      protokollePopup.style.display = 'none';
-      window.location.href = '/neues-protokoll.html';
+      closePopup(protokollePopup);
+      openPopup(neuesProtokollPopup);
     });
 
     protokolldatenbankBtn.addEventListener('click', () => {
-      protokollePopup.style.display = 'none';
+      closePopup(protokollePopup);
       window.location.href = '/protokolldatenbank.html';
+    });
+
+    benutzerLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPopup(benutzerPopup);
+    });
+
+    neuerBenutzerBtn.addEventListener('click', () => {
+      closePopup(benutzerPopup);
+      window.location.href = '/neuer-benutzer.html';
+    });
+
+    benutzerdatenbankBtn.addEventListener('click', () => {
+      closePopup(benutzerPopup);
+      window.location.href = '/benutzerdatenbank.html';
+    });
+
+    kontakteLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      openPopup(kontaktePopup);
+    });
+
+    neuerKontaktBtn.addEventListener('click', () => {
+      closePopup(kontaktePopup);
+      openPopup(neuerKontaktPopup);
+    });
+
+    kontaktDatenbankBtn.addEventListener('click', () => {
+      closePopup(kontaktePopup);
+      window.location.href = '/kontakt-datenbank.html';
+    });
+
+    kontaktAbbrechenBtn.addEventListener('click', () => {
+      closePopup(neuerKontaktPopup);
+    });
+
+    protokollAbbrechenBtn.addEventListener('click', () => {
+      closePopup(neuesProtokollPopup);
     });

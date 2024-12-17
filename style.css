@@ -5,7 +5,7 @@ body {
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f5f7fa;
+      background-color: #f0f2f5;
       transition: background 0.3s ease;
       position: relative;
     }
@@ -46,12 +46,12 @@ body {
       display: none;
       margin-top: 10px;
       position: absolute;
-      top: 20px;
+      top: 10px;
       right: 65px;
     }
 
     #active-project-button {
-      background-color: #f0f0f0;
+      background-color: #e8f0fe;
       border: none;
       border-radius: 5px;
       padding: 8px 12px;
@@ -62,10 +62,11 @@ body {
       transition: background-color 0.3s ease;
       position: relative;
       font-size: 0.9rem;
+      color: #333;
     }
 
     #active-project-button:hover {
-      background-color: #e0e0e0;
+      background-color: #d0e0f5;
     }
 
     .button-group {
@@ -86,7 +87,7 @@ body {
 
     .theme-toggle-container {
       position: absolute;
-      top: 20px;
+      top: 10px;
       right: 20px;
       z-index: 100;
     }
@@ -119,7 +120,7 @@ body {
 
     .sidebar {
       width: 250px;
-      background-color: #f9f9f9;
+      background-color: #fff;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -156,7 +157,7 @@ body {
     }
 
     .sidebar nav a:hover {
-      background-color: #eee;
+      background-color: #f0f0f0;
     }
 
     .sidebar.collapsed {
@@ -252,6 +253,12 @@ body {
       z-index: 1000;
       width: 60%;
       max-width: 800px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .popup.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
     }
 
     .popup-content {
@@ -264,13 +271,14 @@ body {
       padding: 10px 15px;
       border: none;
       border-radius: 5px;
-      background-color: #f0f0f0;
+      background-color: #e8f0fe;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      color: #333;
     }
 
     .popup-content button:hover {
-      background-color: #e0e0e0;
+      background-color: #d0e0f5;
     }
 
     .popup-overlay {
@@ -282,10 +290,19 @@ body {
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 999;
+      backdrop-filter: blur(5px);
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
     }
 
     #neues-projekt-form,
-    #edit-projekt-form {
+    #edit-projekt-form,
+    #neuer-kontakt-form,
+    #edit-kontakt-form,
+    #neues-protokoll-form {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -294,13 +311,21 @@ body {
     }
 
     #neues-projekt-form label,
-    #edit-projekt-form label {
+    #edit-projekt-form label,
+    #neuer-kontakt-form label,
+    #edit-kontakt-form label,
+    #neues-protokoll-form label {
       margin-bottom: 5px;
       font-weight: bold;
     }
 
     #neues-projekt-form input,
-    #edit-projekt-form input {
+    #edit-projekt-form input,
+    #neuer-kontakt-form input,
+    #edit-kontakt-form input,
+    #neues-protokoll-form input,
+    #neues-protokoll-form select,
+    #neues-protokoll-form textarea {
       padding: 10px;
       margin-bottom: 15px;
       border: 1px solid #ddd;
@@ -308,7 +333,10 @@ body {
     }
 
     #neues-projekt-form button,
-    #edit-projekt-form button {
+    #edit-projekt-form button,
+    #neuer-kontakt-form button,
+    #edit-kontakt-form button,
+    #neues-protokoll-form button {
       padding: 10px 15px;
       border: none;
       border-radius: 5px;
@@ -319,7 +347,10 @@ body {
     }
 
     #neues-projekt-form button:hover,
-    #edit-projekt-form button:hover {
+    #edit-projekt-form button:hover,
+    #neuer-kontakt-form button:hover,
+    #edit-kontakt-form button:hover,
+    #neues-protokoll-form button:hover {
       background-color: #45a049;
     }
 
@@ -335,30 +366,84 @@ body {
       margin-bottom: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .projekt-list li:hover {
+      background-color: #eee;
     }
 
     .projekt-list li.active {
       background-color: #e0e0e0;
     }
-    #neues-protokoll-form label,
-    #neues-protokoll-form input,
-    #neues-protokoll-form select,
-    #neues-protokoll-form textarea {
-        margin-bottom: 10px;
+
+    .kontakt-list {
+      list-style: none;
+      padding: 0;
     }
 
-    #neues-protokoll-form button {
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-        margin-right: 10px;
+    .kontakt-list li {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    #neues-protokoll-form button:hover {
-        background-color: #45a049;
+    .kontakt-list li:hover {
+      background-color: #eee;
+    }
+
+    .kontakt-list li.active {
+      background-color: #e0e0e0;
+    }
+
+    .benutzer-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .benutzer-list li {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .benutzer-list li:hover {
+      background-color: #eee;
+    }
+
+    .benutzer-list li.active {
+      background-color: #e0e0e0;
+    }
+
+    .protokoll-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .protokoll-list li {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .protokoll-list li:hover {
+      background-color: #eee;
+    }
+
+    .protokoll-list li.active {
+      background-color: #e0e0e0;
     }
 
     #neues-protokoll-form button[type="button"] {
