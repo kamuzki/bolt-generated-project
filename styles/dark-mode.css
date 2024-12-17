@@ -1,0 +1,200 @@
+.dark-mode {
+      background: #1a1a2e;
+    }
+    
+    .dark-mode body {
+      background: #282c34;
+    }
+    
+    .dark-mode h1,
+    .dark-mode #theme-toggle,
+    .dark-mode .sidebar nav a,
+    .dark-mode #menu-toggle,
+    .dark-mode #active-project-button,
+    .dark-mode #edit-project-button,
+    .dark-mode #change-project-button,
+    .dark-mode .auth-buttons button {
+      color: #fff;
+    }
+    
+    .dark-mode .container {
+      background-color: #282c34;
+      border: 1px solid #3a3a4e;
+    }
+    
+    .dark-mode .sidebar {
+      background-color: #282c34;
+      box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .dark-mode .sidebar nav a {
+      color: #fff;
+    }
+    
+    .dark-mode .sidebar nav a:hover {
+      background-color: #3a3a4e;
+    }
+    
+    .dark-mode .header {
+      background-color: #282c34;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    .dark-mode .header-title h1{
+      color: #fff;
+    }
+    
+    .dark-mode .auth-buttons button {
+      background: #282c34;
+      border-color: #f0f0f0;
+      color: #fff;
+    }
+    
+    .dark-mode .auth-buttons button:hover {
+      background-color: #3a3a4e;
+    }
+    
+    .dark-mode .popup {
+      background-color: #282c34;
+    }
+    
+    .dark-mode .popup-content button {
+      background-color: #3a3a4e;
+      color: #fff;
+    }
+    
+    .dark-mode .popup-content button:hover {
+      background-color: #4d4d4d;
+    }
+    
+    .dark-mode .projekt-list li,
+    .dark-mode .kontakt-list li,
+    .dark-mode .benutzer-list li,
+    .dark-mode .protokoll-list li {
+      background-color: #3a3a4e;
+      color: #fff;
+    }
+    
+    .dark-mode .projekt-list li:hover,
+    .dark-mode .kontakt-list li:hover,
+    .dark-mode .benutzer-list li:hover,
+    .dark-mode .protokoll-list li:hover {
+      background-color: #4d4d4d;
+    }
+    
+    .dark-mode #active-project-button {
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+    }
+    
+    .dark-mode #active-project-button:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    .dark-mode #theme-toggle {
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+    }
+    
+    .dark-mode #theme-toggle:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    .dark-mode .footer-links a {
+      color: #aaa;
+    }
+    
+    .dark-mode .footer-links a:hover {
+      color: #fff;
+    }
+    
+    .dark-mode #neues-protokoll-form button[type="button"] {
+        background-color: #da190b;
+        color: #fff;
+    }
+    
+    .dark-mode #neues-protokoll-form button[type="button"]:hover {
+        background-color: #f44336;
+    }
+    
+    .dark-mode .sidebar nav .main-nav-item.active a {
+      background-color: #45a049;
+    }
+    
+    .dark-mode .sidebar nav .main-nav-item.active a:hover {
+      background-color: #4CAF50;
+    }
+    
+    .dark-mode #neues-projekt-form button,
+    .dark-mode #edit-projekt-form button,
+    .dark-mode #neuer-kontakt-form button,
+    .dark-mode #edit-kontakt-form button,
+    .dark-mode #neues-protokoll-form button,
+    .dark-mode #neuer-benutzer-form button {
+      background-color: #45a049;
+    }
+    
+    .dark-mode #neues-projekt-form button:hover,
+    .dark-mode #edit-projekt-form button:hover,
+    .dark-mode #neuer-kontakt-form button:hover,
+    .dark-mode #edit-kontakt-form button:hover,
+    .dark-mode #neues-protokoll-form button:hover,
+    .dark-mode #neuer-benutzer-form button:hover {
+      background-color: #4CAF50;
+    }
+    
+    .dark-mode .popup-overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .dark-mode #neues-projekt-form input,
+    .dark-mode #edit-projekt-form input,
+    .dark-mode #neuer-kontakt-form input,
+    .dark-mode #edit-kontakt-form input,
+    .dark-mode #neues-protokoll-form input,
+    .dark-mode #neues-protokoll-form select,
+    .dark-mode #neues-protokoll-form textarea,
+    .dark-mode #neuer-benutzer-form input {
+      background-color: #3a3a4e;
+      border-color: #f0f0f0;
+      color: #fff;
+    }
+    
+    .dark-mode #neues-projekt-form ::placeholder,
+    .dark-mode #edit-projekt-form ::placeholder,
+    .dark-mode #neuer-kontakt-form ::placeholder,
+    .dark-mode #edit-kontakt-form ::placeholder,
+    .dark-mode #neues-protokoll-form ::placeholder,
+    .dark-mode #neues-protokoll-form select,
+    .dark-mode #neues-protokoll-form textarea,
+    .dark-mode #neuer-benutzer-form ::placeholder {
+      color: #aaa;
+    }
+    
+    .dark-mode .note {
+      background-color: #3a3a4e;
+      border-color: #f0f0f0;
+      color: #fff;
+    }
+    
+    .dark-mode .note-header {
+      background-color: #282c34;
+      border-bottom-color: #f0f0f0;
+    }
+    
+    .dark-mode .note-textarea {
+      background-color: transparent;
+      color: #fff;
+    }
+    
+    .dark-mode .color-picker {
+      background-color: transparent;
+    }
+    
+    .dark-mode .resizer {
+      background-color: #282c34;
+      border-color: #f0f0f0;
+    }
+    
+    .dark-mode .minimized {
+      background-color: #3a3a4e;
+    }

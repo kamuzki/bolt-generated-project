@@ -1,4 +1,5 @@
-body {
+
+    body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
       display: flex;
@@ -7,7 +8,7 @@ body {
       transition: background 0.3s ease;
       position: relative;
     }
-
+    
     .sidebar {
       width: 250px;
       background-color: #fff;
@@ -21,7 +22,7 @@ body {
       left: 0;
       transition: width 0.3s ease;
     }
-
+    
     .user-info {
       display: flex;
       align-items: center;
@@ -29,37 +30,37 @@ body {
       padding-bottom: 20px;
       border-bottom: 1px solid #eee;
     }
-
+    
     .user-avatar {
       border-radius: 50%;
       margin-right: 10px;
     }
-
+    
     .user-details {
       display: flex;
       flex-direction: column;
     }
-
+    
     .user-name {
       font-weight: 600;
       font-size: 1rem;
     }
-
+    
     .user-email {
       font-size: 0.9rem;
       color: #777;
     }
-
+    
     .sidebar nav ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-
+    
     .sidebar nav li {
       margin-bottom: 5px;
     }
-
+    
     .sidebar nav a {
       text-decoration: none;
       color: #333;
@@ -71,64 +72,64 @@ body {
       transition: background-color 0.3s ease, color 0.3s ease;
       justify-content: flex-start;
     }
-
+    
     .sidebar nav a i {
       margin-right: 15px;
       font-size: 20px;
     }
-
+    
     .sidebar nav a:hover {
       background-color: #f0f0f0;
     }
-
+    
     .sidebar nav .main-nav-item.active a {
       background-color: #4CAF50;
       color: white;
     }
-
+    
     .sidebar nav .main-nav-item.active a:hover {
       background-color: #45a049;
     }
-
+    
     .sidebar nav .main-nav-item .sub-nav {
       display: none;
       list-style: none;
       padding: 0;
       margin-top: 5px;
     }
-
+    
     .sidebar nav .main-nav-item.active .sub-nav {
       display: block;
     }
-
+    
     .sidebar nav .main-nav-item .sub-nav li a {
       padding: 8px 15px 8px 40px;
       font-size: 0.9rem;
     }
-
+    
     .sidebar .separator {
       margin: 10px 0;
       height: 1px;
       background-color: #eee;
     }
-
+    
     .sidebar .footer-links {
       margin-top: auto;
       display: flex;
       flex-direction: column;
     }
-
+    
     .sidebar .footer-links a {
       text-decoration: none;
       color: #777;
       font-size: 0.9rem;
       margin-bottom: 8px;
     }
-
+    
     .sidebar .footer-links a:hover {
       text-decoration: underline;
     }
-
+    
     .main-content {
       flex: 1;
       margin-left: 270px;
@@ -137,7 +138,7 @@ body {
       display: flex;
       flex-direction: column;
     }
-
+    
     .header {
       display: flex;
       justify-content: space-between;
@@ -152,19 +153,19 @@ body {
       z-index: 9;
       transition: left 0.3s ease, width 0.3s ease;
     }
-
+    
     .header-title h1 {
       margin: 0;
       font-size: 1.8rem;
       font-weight: 600;
       color: #333;
     }
-
+    
     .auth-buttons {
       display: flex;
       gap: 15px;
     }
-
+    
     .auth-buttons button {
       background: none;
       border: 1px solid #333;
@@ -175,19 +176,19 @@ body {
       transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
       font-size: 1rem;
     }
-
+    
     .auth-buttons button:hover {
       background-color: #f0f0f0;
       transform: scale(1.05);
     }
-
+    
     .content {
       padding-top: 80px;
       padding-left: 20px;
       flex: 1;
       margin-right: 20px;
     }
-
+    
     .popup {
       position: fixed;
       top: 50%;
@@ -201,18 +202,18 @@ body {
       transition: transform 0.3s ease, opacity 0.3s ease;
       display: none;
     }
-
+    
     .popup.active {
       display: block;
       transform: translate(-50%, -50%);
       opacity: 1;
     }
-
+    
     .popup-content {
       max-height: 80vh;
       overflow-y: auto;
     }
-
+    
     .popup-content button {
       margin-bottom: 15px;
       padding: 12px 20px;
@@ -224,12 +225,12 @@ body {
       color: #333;
       font-size: 1rem;
     }
-
+    
     .popup-content button:hover {
       background-color: #d0e0f5;
       transform: scale(1.05);
     }
-
+    
     .popup-overlay {
       display: none;
       position: fixed;
@@ -243,11 +244,11 @@ body {
       transition: opacity 0.3s ease;
       backdrop-filter: blur(5px);
     }
-
+    
     .popup-overlay.active {
       opacity: 1;
     }
-
+    
     #neues-projekt-form,
     #edit-projekt-form,
     #neuer-kontakt-form,
@@ -260,7 +261,7 @@ body {
       max-width: 400px;
       margin: 0 auto;
     }
-
+    
     #neues-projekt-form label,
     #edit-projekt-form label,
     #neuer-kontakt-form label,
@@ -270,7 +271,7 @@ body {
       margin-bottom: 8px;
       font-weight: bold;
     }
-
+    
     #neues-projekt-form input,
     #edit-projekt-form input,
     #neuer-kontakt-form input,
@@ -285,7 +286,7 @@ body {
       border-radius: 10px;
       font-size: 1rem;
     }
-
+    
     #neues-projekt-form button,
     #edit-projekt-form button,
     #neuer-kontakt-form button,
@@ -301,7 +302,7 @@ body {
       transition: background-color 0.3s ease, transform 0.2s ease;
       font-size: 1rem;
     }
-
+    
     #neues-projekt-form button:hover,
     #edit-projekt-form button:hover,
     #neuer-kontakt-form button:hover,
@@ -311,7 +312,7 @@ body {
       background-color: #45a049;
       transform: scale(1.05);
     }
-
+    
     .projekt-list,
     .kontakt-list,
     .benutzer-list,
@@ -319,7 +320,7 @@ body {
       list-style: none;
       padding: 0;
     }
-
+    
     .projekt-list li,
     .kontakt-list li,
     .benutzer-list li,
@@ -332,36 +333,36 @@ body {
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
+    
     .projekt-list li:hover,
     .kontakt-list li:hover,
     .benutzer-list li:hover,
     .protokoll-list li:hover {
       background-color: #eee;
     }
-
+    
     .projekt-list li.active,
     .kontakt-list li.active,
     .benutzer-list li.active,
     .protokoll-list li.active {
       background-color: #e0e0e0;
     }
-
+    
     #neues-protokoll-form button[type="button"] {
         background-color: #f44336;
     }
-
+    
     #neues-protokoll-form button[type="button"]:hover {
         background-color: #da190b;
     }
-
+    
     .popup {
       width: 60%;
       max-width: 600px;
       height: auto;
       max-height: 60vh;
     }
-
+    
     #active-project-button-container {
       display: flex;
       margin-top: 10px;
@@ -371,7 +372,7 @@ body {
       transform: translateX(-50%);
       z-index: 100;
     }
-
+    
     #active-project-button {
       background-color: rgba(232, 240, 254, 0.7);
       border: none;
@@ -388,15 +389,15 @@ body {
       backdrop-filter: blur(5px);
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     }
-
+    
     #active-project-button:hover {
       background-color: rgba(232, 240, 254, 0.9);
     }
-
+    
     .button-group {
       display: flex;
     }
-
+    
     #edit-project-button,
     #change-project-button {
       background: none;
@@ -408,14 +409,14 @@ body {
       padding: 0;
       display: none;
     }
-
+    
     .theme-toggle-container {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 100;
     }
-
+    
     #theme-toggle {
       background: none;
       border: none;
@@ -429,19 +430,19 @@ body {
       background-color: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(5px);
     }
-
+    
     #theme-toggle:hover {
       color: #555;
     }
-
+    
     .dark-mode {
       background: #1a1a2e;
     }
-
+    
     .dark-mode body {
       background: #282c34;
     }
-
+    
     .dark-mode h1,
     .dark-mode #theme-toggle,
     .dark-mode .sidebar nav a,
@@ -452,25 +453,25 @@ body {
     .dark-mode .auth-buttons button {
       color: #fff;
     }
-
+    
     .dark-mode .container {
       background-color: #282c34;
       border: 1px solid #3a3a4e;
     }
-
+    
     .dark-mode .sidebar {
       background-color: #282c34;
       box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.5);
     }
-
+    
     .dark-mode .sidebar nav a {
       color: #fff;
     }
-
+    
     .dark-mode .sidebar nav a:hover {
       background-color: #3a3a4e;
     }
-
+    
     .dark-mode .header {
       background-color: #282c34;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
@@ -478,30 +479,30 @@ body {
     .dark-mode .header-title h1{
       color: #fff;
     }
-
+    
     .dark-mode .auth-buttons button {
       background: #282c34;
       border-color: #f0f0f0;
       color: #fff;
     }
-
+    
     .dark-mode .auth-buttons button:hover {
       background-color: #3a3a4e;
     }
-
+    
     .dark-mode .popup {
       background-color: #282c34;
     }
-
+    
     .dark-mode .popup-content button {
       background-color: #3a3a4e;
       color: #fff;
     }
-
+    
     .dark-mode .popup-content button:hover {
       background-color: #4d4d4d;
     }
-
+    
     .dark-mode .projekt-list li,
     .dark-mode .kontakt-list li,
     .dark-mode .benutzer-list li,
@@ -509,57 +510,57 @@ body {
       background-color: #3a3a4e;
       color: #fff;
     }
-
+    
     .dark-mode .projekt-list li:hover,
     .dark-mode .kontakt-list li:hover,
     .dark-mode .benutzer-list li:hover,
     .dark-mode .protokoll-list li:hover {
       background-color: #4d4d4d;
     }
-
+    
     .dark-mode #active-project-button {
       background-color: rgba(0, 0, 0, 0.4);
       color: #fff;
     }
-
+    
     .dark-mode #active-project-button:hover {
       background-color: rgba(0, 0, 0, 0.6);
     }
-
+    
     .dark-mode #theme-toggle {
       background-color: rgba(0, 0, 0, 0.4);
       color: #fff;
     }
-
+    
     .dark-mode #theme-toggle:hover {
       background-color: rgba(0, 0, 0, 0.6);
     }
-
+    
     .dark-mode .footer-links a {
       color: #aaa;
     }
-
+    
     .dark-mode .footer-links a:hover {
       color: #fff;
     }
-
+    
     .dark-mode #neues-protokoll-form button[type="button"] {
         background-color: #da190b;
         color: #fff;
     }
-
+    
     .dark-mode #neues-protokoll-form button[type="button"]:hover {
         background-color: #f44336;
     }
-
+    
     .dark-mode .sidebar nav .main-nav-item.active a {
       background-color: #45a049;
     }
-
+    
     .dark-mode .sidebar nav .main-nav-item.active a:hover {
       background-color: #4CAF50;
     }
-
+    
     .dark-mode #neues-projekt-form button,
     .dark-mode #edit-projekt-form button,
     .dark-mode #neuer-kontakt-form button,
@@ -568,7 +569,7 @@ body {
     .dark-mode #neuer-benutzer-form button {
       background-color: #45a049;
     }
-
+    
     .dark-mode #neues-projekt-form button:hover,
     .dark-mode #edit-projekt-form button:hover,
     .dark-mode #neuer-kontakt-form button:hover,
@@ -577,11 +578,11 @@ body {
     .dark-mode #neuer-benutzer-form button:hover {
       background-color: #4CAF50;
     }
-
+    
     .dark-mode .popup-overlay {
       background-color: rgba(0, 0, 0, 0.7);
     }
-
+    
     .dark-mode #neues-projekt-form input,
     .dark-mode #edit-projekt-form input,
     .dark-mode #neuer-kontakt-form input,
@@ -594,7 +595,7 @@ body {
       border-color: #f0f0f0;
       color: #fff;
     }
-
+    
     .dark-mode #neues-projekt-form ::placeholder,
     .dark-mode #edit-projekt-form ::placeholder,
     .dark-mode #neuer-kontakt-form ::placeholder,
@@ -605,7 +606,7 @@ body {
     .dark-mode #neuer-benutzer-form ::placeholder {
       color: #aaa;
     }
-
+    
     #menu-toggle {
       background: none;
       border: none;
@@ -617,181 +618,160 @@ body {
       transition: color 0.3s ease;
       padding: 0;
     }
-
+    
     .dark-mode #menu-toggle {
       color: #fff;
     }
-
+    
     .sidebar.collapsed {
       width: 70px;
     }
-
+    
     .sidebar.collapsed .user-info {
       display: none;
     }
-
+    
     .sidebar.collapsed nav a span {
       display: none;
     }
-
+    
     .sidebar.collapsed nav a {
       justify-content: center;
     }
-
+    
     .sidebar.collapsed .footer-links {
       display: none;
     }
-
+    
     .sidebar.collapsed .separator {
       display: none;
     }
-
+    
     .sidebar.collapsed .main-nav-item .sub-nav {
       display: none !important;
     }
-
+    
     .sidebar.collapsed:hover {
       width: 250px;
     }
-
+    
     .sidebar.collapsed:hover .user-info {
       display: flex;
     }
-
+    
     .sidebar.collapsed:hover nav a span {
       display: inline;
     }
-
+    
     .sidebar.collapsed:hover nav a {
       justify-content: flex-start;
     }
-
+    
     .sidebar.collapsed:hover .footer-links {
       display: flex;
     }
-
+    
     .sidebar.collapsed:hover .separator {
       display: block;
     }
-
+    
     .sidebar.collapsed:hover .main-nav-item.active .sub-nav {
       display: block !important;
     }
-
+    
     .sidebar.collapsed:hover .main-nav-item .sub-nav li a {
       padding: 8px 15px 8px 15px;
     }
-
+    
     .sidebar.collapsed:hover #menu-toggle i {
       transform: rotate(180deg);
     }
-
+    
     #menu-toggle i {
       transition: transform 0.3s ease;
     }
-
+    
     @media (max-width: 768px) {
       .popup {
         width: 80%;
         max-height: 80vh;
       }
-
+    
       .sidebar {
         width: 70px;
       }
-
+    
       .sidebar .user-info {
         display: none;
       }
-
+    
       .sidebar nav a span {
         display: none;
       }
-
+    
       .sidebar nav a {
         justify-content: center;
       }
-
+    
       .sidebar .footer-links {
         display: none;
       }
-
+    
       .sidebar .separator {
         display: none;
       }
-
+    
       .sidebar .main-nav-item .sub-nav {
         display: none !important;
       }
-
+    
       .sidebar:hover {
         width: 250px;
       }
-
+    
       .sidebar:hover .user-info {
         display: flex;
       }
-
+    
       .sidebar:hover nav a span {
         display: inline;
       }
-
+    
       .sidebar:hover nav a {
         justify-content: flex-start;
       }
-
+    
       .sidebar:hover .footer-links {
         display: flex;
       }
-
+    
       .sidebar:hover .separator {
         display: block;
       }
-
+    
       .sidebar:hover .main-nav-item.active .sub-nav {
         display: block !important;
       }
-
+    
       .sidebar:hover .main-nav-item .sub-nav li a {
         padding: 8px 15px 8px 15px;
       }
-
+    
       .main-content {
         margin-left: 70px;
       }
-
+    
       .header {
         left: 70px;
         width: calc(100% - 70px);
       }
-
+    
       .content {
         padding: 20px;
       }
-
+    
       .container {
         margin-top: 80px;
       }
-
-      #active-project-button-container {
-        bottom: 10px;
-      }
-
-      .theme-toggle-container {
-        bottom: 10px;
-        right: 10px;
-      }
-
-      footer {
-        font-size: 0.8rem;
-        bottom: 10px;
-        padding: 0 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .popup {
-        width: 95%;
-        max-height: 90vh;
-      }
-    }
+    
+      #active

@@ -1,0 +1,145 @@
+.note {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: #ffffcc;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    .note-header {
+      padding: 5px;
+      background-color: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+      cursor: move;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .note-header span {
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    
+    .note-content {
+      width: calc(100% - 20px);
+      height: calc(100% - 40px);
+      padding: 10px;
+      font-size: 1rem;
+      line-height: 1.4;
+      overflow: auto;
+    }
+    
+    .resizer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      height: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      cursor: se-resize;
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(5px);
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close-button:hover,
+    .close-button:focus {
+      color: black;
+      text-decoration: none;
+    }
+    
+    /* Zusätzliche Styles für das Modal-Formular */
+    #note-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    #note-form textarea {
+      width: calc(100% - 20px);
+      height: 150px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    
+    #note-form input[type="color"] {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    #note-form button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    #note-form button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    
+    body.modal-open {
+      overflow: hidden;
+    }
+    
+    /* Neue CSS-Regeln für die Verwendung von :target */
+    .modal {
+      display: none;
+    }
+    
+    .modal:target {
+      display: block;
+    }
+    
+    .close-modal-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999; /* Stellen Sie sicher, dass der Link über dem Modal liegt */
+    }

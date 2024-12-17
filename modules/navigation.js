@@ -18,10 +18,7 @@ export function initNavigation() {
         window.location.href = '/';
       });
     
-      notesLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = '/notes.html';
-      });
+      // Entferne den Event-Listener für den Notes-Link, da wir jetzt die :target-Pseudo-Klasse verwenden
     
       tasksLink.addEventListener('click', (e) => {
         e.preventDefault();
