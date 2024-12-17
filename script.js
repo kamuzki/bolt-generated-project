@@ -40,6 +40,9 @@ const themeToggle = document.getElementById('theme-toggle');
     const neuerKontaktPopup = document.getElementById('neuer-kontakt-popup');
     const neuerBenutzerPopup = document.getElementById('neuer-benutzer-popup');
     const benutzerdatenbankPopup = document.getElementById('benutzerdatenbank-popup');
+    const homeLink = document.getElementById('home-link');
+    const notesLink = document.getElementById('notes-link');
+    const tasksLink = document.getElementById('tasks-link');
 
     let currentActiveProject = null;
     let editButtonVisible = false;
@@ -375,3 +378,51 @@ const themeToggle = document.getElementById('theme-toggle');
         })
         .catch(error => console.error('Error fetching users:', error));
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebar = document.querySelector('.sidebar');
+      const mainNavItems = sidebar.querySelectorAll('.main-nav-item');
+    
+      mainNavItems.forEach(item => {
+        const link = item.querySelector('a');
+        const subNav = item.querySelector('.sub-nav');
+    
+        if (link && subNav) {
+          link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const isSubNavVisible = subNav.style.display !== 'none';
+    
+            mainNavItems.forEach(otherItem => {
+              const otherSubNav = otherItem.querySelector('.sub-nav');
+              if (otherSubNav && otherItem !== item) {
+                otherSubNav.style.display = 'none';
+                otherItem.classList.remove('active');
+              }
+            });
+    
+            if (isSubNavVisible) {
+              subNav.style.display = 'none';
+              item.classList.remove('active');
+            } else {
+              subNav.style.display = 'block';
+              item.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+
+    homeLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = '/';
+    });
+
+    notesLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = '/notes.html';
+    });
+
+    tasksLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = '/tasks.html';
+    });
