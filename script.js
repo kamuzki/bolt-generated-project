@@ -127,16 +127,13 @@ const themeToggle = document.getElementById('theme-toggle');
       openPopup(projektePopup);
     });
 
-    popupOverlay.addEventListener('click', () => {
-      closePopup(projektePopup);
-      closePopup(neuesProjektPopup);
-      closePopup(projektdatenbankPopup);
-      closePopup(editProjektPopup);
-      closePopup(protokollePopup);
-      closePopup(benutzerPopup);
-      closePopup(kontaktePopup);
-      closePopup(neuesProtokollPopup);
-       closePopup(neuerKontaktPopup);
+    popupOverlay.addEventListener('click', (event) => {
+      if (event.target === popupOverlay) {
+        const activePopup = document.querySelector('.popup.active');
+        if (activePopup) {
+          closePopup(activePopup);
+        }
+      }
     });
 
     neuesProjektBtn.addEventListener('click', () => {
