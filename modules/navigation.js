@@ -1,6 +1,6 @@
 export function initNavigation() {
       const homeLink = document.getElementById('home-link');
-      const notesLink = document.getElementById('notes-link');
+      // const notesLink = document.getElementById('notes-link'); // Remove this line
       const tasksLink = document.getElementById('tasks-link');
       const newProjectLink = document.getElementById('new-project-link');
       const projektdatenbankLink = document.getElementById('projektdatenbank-link');

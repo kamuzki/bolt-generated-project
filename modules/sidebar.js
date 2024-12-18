@@ -1,6 +1,6 @@
 export function initSidebar() {
-      const navList = document.querySelector('.sidebar nav ul'); // Das übergeordnete ul-Element
-    
+      const navList = document.querySelector('.sidebar nav ul');
+      
       // Event Delegation für alle Klick-Events innerhalb der Navigation
       navList.addEventListener('click', (event) => {
         const clickedElement = event.target;
@@ -35,9 +35,18 @@ export function initSidebar() {
     
         // Überprüfen, ob ein Submenü-Link geklickt wurde
         if (clickedElement.tagName === 'A' && clickedElement.parentNode.parentNode.classList.contains('sub-nav')) {
-          event.stopPropagation(); // Verhindert, dass das Klicken auf den Link das Submenü schließt
+          event.stopPropagation();
           console.log('Submenu item clicked:', clickedElement.textContent, 'Navigating to:', clickedElement.href);
-          window.location.href = clickedElement.href; // Navigation zur URL des Links
+    
+          // Überprüfen, ob es sich um den "Notes"-Link handelt
+          if (clickedElement.id === 'notes-link') {
+            event.preventDefault(); // Verhindert die Standardaktion des Links
+            console.log('Notes link clicked');
+            // Hier wird die Logik zum Öffnen des Notes-Popups aufgerufen
+            // Diese Logik ist jetzt in initNotes in notes.js
+          } else {
+            window.location.href = clickedElement.href; // Navigation zu anderen Links
+          }
         }
       });
     }

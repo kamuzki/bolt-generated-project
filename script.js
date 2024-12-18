@@ -5,6 +5,7 @@ import { initThemeToggle } from './modules/themeToggle.js';
     import { initBenutzer } from './modules/benutzer.js';
     import { initKontakte } from './modules/kontakte.js';
     import { initNavigation } from './modules/navigation.js';
+    import { initNotes } from './modules/notes.js';
 
     document.addEventListener('DOMContentLoaded', () => {
       initThemeToggle();
@@ -14,4 +15,5 @@ import { initThemeToggle } from './modules/themeToggle.js';
       initBenutzer();
       initKontakte();
       initNavigation();
+      initNotes();
     });
