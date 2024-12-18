@@ -137,8 +137,6 @@ export function initNotes() {
         noteElement.classList.add("note");
         noteElement.id = `note-${note.id}`;
         noteElement.style.backgroundColor = note.color;
-        noteElement.style.gridRow = note.position.row;
-        noteElement.style.gridColumn = note.position.column;
         noteElement.style.width = `${note.size.width}px`;
         noteElement.style.height = `${note.size.height}px`;
         noteElement.innerHTML = `
@@ -221,79 +219,44 @@ export function initNotes() {
     function makeNoteDraggable(noteElement, note) {
       let isDragging = false;
       let startPosX, startPosY;
-
+    
       noteElement.addEventListener("mousedown", (e) => {
-        if (
-          e.target.classList.contains("note-header") ||
-          e.target.tagName === "SPAN"
-        ) {
+        if (e.target.classList.contains("note-header") || e.target.tagName === "SPAN") {
+          e.preventDefault(); // Prevent text selection during drag
           isDragging = true;
           startPosX = e.clientX - noteElement.offsetLeft;
           startPosY = e.clientY - noteElement.offsetTop;
           noteElement.style.zIndex = 1000;
         }
       });
-
+    
       document.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
-
+    
         const x = e.clientX - startPosX;
         const y = e.clientY - startPosY;
-
+    
         noteElement.style.left = `${x}px`;
         noteElement.style.top = `${y}px`;
       });
-
-      document.addEventListener("mouseup", (e) => {
-        isDragging = false;
-        noteElement.style.zIndex = "auto";
-
-        // Snap to grid logic
-        const notesContainer = document.getElementById("notes-container");
-        const gridRect = notesContainer.getBoundingClientRect();
-        const noteRect = noteElement.getBoundingClientRect();
-
-        const relativeX = noteRect.left - gridRect.left;
-        const relativeY = noteRect.top - gridRect.top;
-
-        const gridColumnWidth = gridRect.width / 3; // Assuming a 3-column grid
-        const gridRowHeight = 150; // Assuming a fixed row height
-
-        let targetColumn = Math.round(relativeX / gridColumnWidth) + 1;
-        let targetRow = Math.round(relativeY / gridRowHeight) + 1;
-
-        // Ensure the note stays within the grid bounds
-        targetColumn = Math.max(1, Math.min(targetColumn, 3)); // Limit to 3 columns
-        targetRow = Math.max(1, targetRow);
-
-        // Check for overlaps and find the nearest available position
-        const notes = loadNotes();
-        const isOverlapping = (row, col) =>
-          notes.some(
-            (n) =>
-              n.id !== note.id &&
-              n.position.row === row &&
-              n.position.column === col
-          );
-
-        while (isOverlapping(targetRow, targetColumn)) {
-          targetColumn++;
-          if (targetColumn > 3) {
-            targetColumn = 1;
-            targetRow++;
+    
+      document.addEventListener("mouseup", () => {
+        if (isDragging) {
+          isDragging = false;
+          noteElement.style.zIndex = "auto";
+    
+          // Update note position in the array
+          let notes = loadNotes();
+          const noteIndex = notes.findIndex((n) => n.id === note.id);
+          if (noteIndex !== -1) {
+            note.position = {
+              x: noteElement.offsetLeft,
+              y: noteElement.offsetTop
+            };
+            notes[noteIndex] = note;
+            saveNotes(notes);
           }
         }
-
-        note.position.row = targetRow;
-        note.position.column = targetColumn;
-
-        const noteIndex = notes.findIndex((n) => n.id === note.id);
-        if (noteIndex !== -1) {
-          notes[noteIndex] = note;
-          saveNotes(notes);
-        }
-
-        renderNotes(loadNotes(), notesContainer); // Re-render to apply new position
       });
     }
 
