@@ -5,6 +5,7 @@
   grid-auto-rows: minmax(150px, auto);
   gap: 20px;
   padding: 20px;
+  position: relative;
 }
 
 .note {
@@ -14,7 +15,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Helvetica Neue', Arial, sans-serif;
   overflow: hidden;
-  position: relative;
+  position: absolute;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -23,13 +24,16 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+.note:hover .note-content {
+  filter: blur(2px);
+}
+
 .note-header {
   padding: 10px;
   background-color: #f8f8f8;
   border-bottom: 1px solid #ddd;
-  cursor: move;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -39,10 +43,6 @@
 }
 
 .note-header span {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  margin-left: 5px;
   cursor: pointer;
   font-size: 14px;
   color: #888;
@@ -385,4 +385,166 @@ body.modal-open {
 
 .dark-mode .close-button:hover {
   color: #ccc;
+}
+
+.note-tags {
+    padding: 10px;
+    font-size: 0.8rem;
+}
+
+.tag {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.dark-mode .tag {
+    background-color: #4d4d4d;
+    color: #fff;
+}
+
+.search-input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 1rem;
+    width: 300px;
+}
+
+.dark-mode .search-input {
+    background-color: #3a3a4e;
+    border-color: #666;
+    color: #fff;
+}
+
+.dark-mode .search-input::placeholder {
+    color: #aaa;
+}
+
+.grid-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.grid-cell {
+  position: absolute;
+  border: 1px dashed #ccc;
+  width: 220px;
+  height: 220px;
+  box-sizing: border-box;
+}
+
+.dark-mode .grid-cell {
+  border-color: #666;
+}
+
+.edit-button {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: none;
+  z-index: 20;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode .edit-button {
+  background-color: #45a049;
+}
+
+.dark-mode .edit-button:hover {
+  background-color: #4CAF50;
+}
+
+.delete-button {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: none;
+  z-index: 20;
+}
+
+.delete-button:hover {
+  background-color: #da190b;
+}
+
+.dark-mode .delete-button {
+  background-color: #f44336;
+}
+
+.dark-mode .delete-button:hover {
+  background-color: #da190b;
+}
+
+.save-button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.dark-mode .save-button {
+  background-color: #007aff;
+}
+
+.dark-mode .save-button:hover {
+  background-color: #0056b3;
+}
+
+.cancel-button {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.cancel-button:hover {
+  background-color: #da190b;
+}
+
+.dark-mode .cancel-button {
+  background-color: #f44336;
+}
+
+.dark-mode .cancel-button:hover {
+  background-color: #da190b;
 }
