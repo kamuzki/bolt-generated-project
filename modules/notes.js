@@ -59,7 +59,7 @@ export function initNotes() {
         option.addEventListener("click", () => {
           selectedNoteColor = option.getAttribute("data-color");
           // Remove the active class from all options
-          colorOptions.forEach(opt => opt.classList.remove("active"));
+          colorOptions.forEach((opt) => opt.classList.remove("active"));
           // Add the active class to the selected option
           option.classList.add("active");
         });
@@ -81,8 +81,8 @@ export function initNotes() {
       id: Date.now(),
       content: noteContentInput.value,
       color: selectedNoteColor,
-      position: { row: 1, column: 1 },
-      size: { width: 200, height: 200 }
+      position: getNextAvailablePosition(loadNotes()),
+      size: { width: 200, height: 200 },
     };
 
     let notes = loadNotes();
@@ -94,6 +94,27 @@ export function initNotes() {
     noteModal.style.display = "none";
     document.body.classList.remove("modal-open");
   });
+}
+
+function getNextAvailablePosition(notes) {
+  const maxColumns = 3;
+  let nextRow = 1;
+  let nextColumn = 1;
+
+  while (
+    notes.some(
+      (note) =>
+        note.position.row === nextRow && note.position.column === nextColumn
+    )
+  ) {
+    nextColumn++;
+    if (nextColumn > maxColumns) {
+      nextColumn = 1;
+      nextRow++;
+    }
+  }
+
+  return { row: nextRow, column: nextColumn };
 }
 
 function renderNotes(notes, notesContainer) {
@@ -169,13 +190,34 @@ function makeNoteDraggable(noteElement, note) {
     const gridColumnWidth = gridRect.width / 3; // Assuming a 3-column grid
     const gridRowHeight = 150; // Assuming a fixed row height
 
-    const targetColumn = Math.round(relativeX / gridColumnWidth) + 1;
-    const targetRow = Math.round(relativeY / gridRowHeight) + 1;
+    let targetColumn = Math.round(relativeX / gridColumnWidth) + 1;
+    let targetRow = Math.round(relativeY / gridRowHeight) + 1;
+
+    // Ensure the note stays within the grid bounds
+    targetColumn = Math.max(1, Math.min(targetColumn, 3)); // Limit to 3 columns
+    targetRow = Math.max(1, targetRow);
+
+    // Check for overlaps and find the nearest available position
+    const notes = loadNotes();
+    const isOverlapping = (row, col) =>
+      notes.some(
+        (n) =>
+          n.id !== note.id &&
+          n.position.row === row &&
+          n.position.column === col
+      );
+
+    while (isOverlapping(targetRow, targetColumn)) {
+      targetColumn++;
+      if (targetColumn > 3) {
+        targetColumn = 1;
+        targetRow++;
+      }
+    }
 
     note.position.row = targetRow;
     note.position.column = targetColumn;
 
-    let notes = loadNotes();
     const noteIndex = notes.findIndex((n) => n.id === note.id);
     if (noteIndex !== -1) {
       notes[noteIndex] = note;

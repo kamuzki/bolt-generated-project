@@ -1,7 +1,4 @@
 .note {
-  position: absolute;
-  width: 200px;
-  height: 200px;
   background-color: #fff;
   /* White background for note cards */
   border: 1px solid #ddd;
