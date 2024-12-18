@@ -194,6 +194,7 @@
       margin-bottom: 20px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
       transition: all 0.3s ease; /* Smooth transition for hover effect */
+      margin-left: 0;
     }
     
     #add-note-button:hover {
@@ -215,6 +216,8 @@
       color: #333;
       margin-bottom: 20px;
       margin-top: 20px;
+      padding-left: 270px;
+      width: 100%;
     }
     
     .dark-mode .note {
@@ -312,4 +315,27 @@
     
     .dark-mode #notes-page-header {
       color: #eee;
+    }
+    
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      z-index: 1001;
+      cursor: pointer;
+      font-size: 24px;
+      color: #666;
+      transition: color 0.3s ease;
+    }
+    
+    .close-button:hover {
+      color: #000;
+    }
+    
+    .dark-mode .close-button {
+      color: #999;
+    }
+    
+    .dark-mode .close-button:hover {
+      color: #ccc;
     }

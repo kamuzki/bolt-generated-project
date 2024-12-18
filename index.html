@@ -390,10 +390,13 @@
             <form id="note-form">
               <label for="note-content">Inhalt:</label>
               <textarea id="note-content" name="note-content" required></textarea>
-    
-              <label for="note-color">Farbe:</label>
-              <input type="color" id="note-color" name="note-color" value="#ffffcc">
-    
+              <div id="color-palette">
+                <div class="color-option" data-color="#f44336"></div>
+                <div class="color-option" data-color="#e91e63"></div>
+                <div class="color-option" data-color="#9c27b0"></div>
+                <div class="color-option" data-color="#673ab7"></div>
+                <div class="color-option" data-color="#3f51b5"></div>
+              </div>
               <button type="submit">Notiz erstellen</button>
               <button type="button" id="close-note-modal">Abbrechen</button>
             </form>

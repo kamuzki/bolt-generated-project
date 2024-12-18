@@ -10,10 +10,9 @@ export function initNotes() {
       const notesContainer = document.createElement('div');
       notesContainer.id = 'notes-container';
       const noteModal = document.getElementById('note-modal');
-      const closeNoteModal = document.getElementById('close-note-modal');
       const noteForm = document.getElementById('note-form');
       const noteContentInput = document.getElementById('note-content');
-      const noteColorInput = document.getElementById('note-color');
+      let selectedNoteColor = '#ffffcc';
     
       // Display the notes content in the main area when the "Notes" link is clicked
       notesLink.addEventListener('click', (e) => {
@@ -23,7 +22,13 @@ export function initNotes() {
         notesHeader.style.display = 'block';
         pageContent.innerHTML = '';
     
-        // Append the add-note button and notes container
+        // Apply flexbox to center the button
+        pageContent.style.display = 'flex';
+        pageContent.style.flexDirection = 'column';
+        pageContent.style.alignItems = 'center';
+    
+        // Append the header, add-note button and notes container
+        pageContent.appendChild(notesHeader);
         pageContent.appendChild(addNoteButton);
         pageContent.appendChild(notesContainer);
     
@@ -35,13 +40,30 @@ export function initNotes() {
         if (e.target.id === 'add-note-button') {
           noteModal.style.display = 'block';
           document.body.classList.add('modal-open');
-        }
-      });
     
-      // Close the new note modal
-      closeNoteModal.addEventListener('click', () => {
-        noteModal.style.display = 'none';
-        document.body.classList.remove('modal-open');
+          // Add the close button to the modal
+          const closeButton = document.createElement('span');
+          closeButton.classList.add('close-button');
+          closeButton.innerHTML = '&times;';
+          closeButton.addEventListener('click', () => {
+            noteModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+          });
+          noteModal.querySelector('.popup-content').appendChild(closeButton);
+    
+          // Initialize color palette
+          const colorPalette = document.getElementById('color-palette');
+          const colorOptions = colorPalette.querySelectorAll('.color-option');
+          colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+              selectedNoteColor = option.getAttribute('data-color');
+              // Remove the active class from all options
+              colorOptions.forEach(opt => opt.classList.remove('active'));
+              // Add the active class to the selected option
+              option.classList.add('active');
+            });
+          });
+        }
       });
     
       // Handle new note form submission
@@ -51,7 +73,7 @@ export function initNotes() {
         const newNote = {
           id: Date.now(),
           content: noteContentInput.value,
-          color: noteColorInput.value,
+          color: selectedNoteColor,
           position: { x: 50, y: 50 },
           size: { width: 200, height: 200 }
         };
@@ -62,7 +84,6 @@ export function initNotes() {
         renderNotes(notes, notesContainer);
     
         noteContentInput.value = '';
-        noteColorInput.value = '#ffffcc';
         noteModal.style.display = 'none';
         document.body.classList.remove('modal-open');
       });
