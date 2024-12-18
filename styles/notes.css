@@ -1,341 +1,384 @@
 .note {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background-color: #fff; /* White background for note cards */
-      border: 1px solid #ddd; /* Subtle border */
-      border-radius: 10px; /* Rounded corners */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-      font-family: 'Helvetica Neue', Arial, sans-serif; /* iOS-like font */
-      overflow: hidden; /* Hide content that overflows */
-    }
-    
-    .note-header {
-      padding: 5px;
-      background-color: #f8f8f8; /* Light gray header */
-      border-bottom: 1px solid #ddd;
-      cursor: move;
-      display: flex;
-      justify-content: flex-end;
-    }
-    
-    .note-header span {
-      margin-left: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      color: #888; /* Lighter color for icons */
-    }
-    
-    .note-content {
-      width: calc(100% - 20px);
-      height: calc(100% - 40px);
-      padding: 10px;
-      font-size: 1rem;
-      line-height: 1.4;
-      overflow: auto;
-      color: #333; /* Dark gray text color */
-    }
-    
-    .resizer {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 10px;
-      height: 10px;
-      background-color: #f0f0f0;
-      border: 1px solid #ddd;
-      cursor: se-resize;
-    }
-    
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent backdrop */
-      backdrop-filter: blur(5px);
-    }
-    
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 10px; /* Rounded corners */
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    }
-    
-    .close-button {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
-    .close-button:hover,
-    .close-button:focus {
-      color: black;
-      text-decoration: none;
-    }
-    
-    /* Additional Styles for the Modal Form */
-    #note-form label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    
-    #note-form textarea {
-      width: calc(100% - 20px);
-      height: 150px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px; /* Rounded corners */
-      font-size: 1rem;
-      resize: vertical;
-    }
-    
-    #note-form input[type="color"] {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 40px;
-      border: 1px solid #ddd;
-      border-radius: 5px; /* Rounded corners */
-      background-color: transparent;
-      padding: 0;
-      cursor: pointer;
-    }
-    
-    #note-form input[type="color"]::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-    
-    #note-form input[type="color"]::-webkit-color-swatch {
-      border: none;
-      border-radius: 5px; /* Rounded corners */
-    }
-    
-    #note-form input[type="color"]::-moz-color-swatch {
-      border: none;
-      border-radius: 5px; /* Rounded corners */
-    }
-    
-    #note-form button[type="submit"] {
-      background-color: #007aff; /* iOS blue */
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px; /* Rounded corners */
-      cursor: pointer;
-      font-size: 1rem;
-      margin-right: 10px;
-    }
-    
-    #note-form button[type="submit"]:hover {
-      background-color: #0056b3; /* Darker blue on hover */
-    }
-    
-    #note-form button[type="button"] {
-      /* Cancel button */
-      background-color: #fff;
-      color: #007aff;
-      padding: 10px 20px;
-      border: 1px solid #007aff;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    
-    #note-form button[type="button"]:hover {
-      background-color: #f0f0f0;
-    }
-    
-    body.modal-open {
-      overflow: hidden;
-    }
-    
-    /* New CSS Rules for :target */
-    .modal {
-      display: none;
-    }
-    
-    .modal:target {
-      display: block;
-    }
-    
-    .close-modal-link {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 999;
-    }
-    
-    /* Styling for the "Add Note" button */
-    #add-note-button {
-      background-color: #007aff; /* iOS blue */
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px; /* Rounded corners */
-      cursor: pointer;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-      transition: all 0.3s ease; /* Smooth transition for hover effect */
-      margin-left: 0;
-    }
-    
-    #add-note-button:hover {
-      background-color: #0056b3; /* Darker blue on hover */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Slightly more pronounced shadow on hover */
-    }
-    
-    /* Styling for the notes container */
-    #notes-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    
-    /* Additional styling for the notes header */
-    #notes-page-header {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 20px;
-      margin-top: 20px;
-      padding-left: 270px;
-      width: 100%;
-    }
-    
-    .dark-mode .note {
-      background-color: #3a3a4e;
-      border-color: #f0f0f0;
-      color: #fff;
-    }
-    
-    .dark-mode .note-header {
-      background-color: #282c34;
-      border-bottom-color: #f0f0f0;
-    }
-    
-    .dark-mode .note-textarea {
-      background-color: transparent;
-      color: #fff;
-    }
-    
-    .dark-mode .color-picker {
-      background-color: transparent;
-    }
-    
-    .dark-mode .resizer {
-      background-color: #282c34;
-      border-color: #f0f0f0;
-    }
-    
-    .dark-mode .minimized {
-      background-color: #3a3a4e;
-    }
-    
-    .dark-mode .modal-content {
-      background-color: #282c34;
-      border-color: #666;
-    }
-    
-    .dark-mode .close-button {
-      color: #999;
-    }
-    
-    .dark-mode .close-button:hover,
-    .dark-mode .close-button:focus {
-      color: #ccc;
-    }
-    
-    .dark-mode #note-form label {
-      color: #eee;
-    }
-    
-    .dark-mode #note-form textarea {
-      background-color: #3a3a4e;
-      border-color: #666;
-      color: #fff;
-    }
-    
-    .dark-mode #note-form input[type="color"] {
-      border-color: #666;
-    }
-    
-    .dark-mode #note-form input[type="color"]::-webkit-color-swatch {
-      border-color: #666;
-    }
-    
-    .dark-mode #note-form input[type="color"]::-moz-color-swatch {
-      border-color: #666;
-    }
-    
-    .dark-mode #note-form button[type="submit"] {
-      background-color: #007aff;
-      color: #fff;
-    }
-    
-    .dark-mode #note-form button[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-    
-    .dark-mode #note-form button[type="button"] {
-      background-color: #3a3a4e;
-      color: #007aff;
-      border-color: #007aff;
-    }
-    
-    .dark-mode #note-form button[type="button"]:hover {
-      background-color: #4d4d4d;
-    }
-    
-    .dark-mode #add-note-button {
-      background-color: #007aff;
-      color: #fff;
-    }
-    
-    .dark-mode #add-note-button:hover {
-      background-color: #0056b3;
-    }
-    
-    .dark-mode #notes-page-header {
-      color: #eee;
-    }
-    
-    .close-button {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      z-index: 1001;
-      cursor: pointer;
-      font-size: 24px;
-      color: #666;
-      transition: color 0.3s ease;
-    }
-    
-    .close-button:hover {
-      color: #000;
-    }
-    
-    .dark-mode .close-button {
-      color: #999;
-    }
-    
-    .dark-mode .close-button:hover {
-      color: #ccc;
-    }
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  /* White background for note cards */
+  border: 1px solid #ddd;
+  /* Subtle border */
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  /* iOS-like font */
+  overflow: hidden;
+  /* Hide content that overflows */
+}
+
+.note-header {
+  padding: 5px;
+  background-color: #f8f8f8;
+  /* Light gray header */
+  border-bottom: 1px solid #ddd;
+  cursor: move;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.note-header span {
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  /* Lighter color for icons */
+}
+
+.note-content {
+  width: calc(100% - 20px);
+  height: calc(100% - 40px);
+  padding: 10px;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow: auto;
+  color: #333;
+  /* Dark gray text color */
+}
+
+.resizer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: se-resize;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Semi-transparent backdrop */
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Additional Styles for the Modal Form */
+#note-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#note-form textarea {
+  width: calc(100% - 20px);
+  height: 150px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  /* Rounded corners */
+  font-size: 1rem;
+  resize: vertical;
+}
+
+/* Styling for the color palette */
+#color-palette {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  /* Add a border */
+  transition: border 0.2s;
+  /* Smooth transition for border */
+}
+
+.color-option.active {
+  border-color: #007aff;
+  /* Highlight border for active color */
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+/* Color options */
+.color-option[data-color="#f44336"] {
+  background-color: #f44336;
+}
+
+.color-option[data-color="#e91e63"] {
+  background-color: #e91e63;
+}
+
+.color-option[data-color="#9c27b0"] {
+  background-color: #9c27b0;
+}
+
+.color-option[data-color="#673ab7"] {
+  background-color: #673ab7;
+}
+
+.color-option[data-color="#3f51b5"] {
+  background-color: #3f51b5;
+}
+
+#note-form button[type="submit"] {
+  background-color: #007aff;
+  /* iOS blue */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  /* Rounded corners */
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+#note-form button[type="submit"]:hover {
+  background-color: #0056b3;
+  /* Darker blue on hover */
+}
+
+#note-form button[type="button"] {
+  /* Cancel button */
+  background-color: #fff;
+  color: #007aff;
+  padding: 10px 20px;
+  border: 1px solid #007aff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#note-form button[type="button"]:hover {
+  background-color: #f0f0f0;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* New CSS Rules for :target */
+.modal {
+  display: none;
+}
+
+.modal:target {
+  display: block;
+}
+
+.close-modal-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+/* Styling for the "Add Note" button */
+#add-note-button {
+  background-color: #007aff;
+  /* iOS blue */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  /* Rounded corners */
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow */
+  transition: all 0.3s ease;
+  /* Smooth transition for hover effect */
+  margin-left: 0;
+}
+
+#add-note-button:hover {
+  background-color: #0056b3;
+  /* Darker blue on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  /* Slightly more pronounced shadow on hover */
+}
+
+/* Styling for the notes container */
+#notes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 150px;
+  gap: 20px;
+}
+
+/* Additional styling for the notes header */
+#notes-page-header {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-left: 270px;
+  width: 100%;
+}
+
+.dark-mode .note {
+  background-color: #3a3a4e;
+  border-color: #f0f0f0;
+  color: #fff;
+}
+
+.dark-mode .note-header {
+  background-color: #282c34;
+  border-bottom-color: #f0f0f0;
+}
+
+.dark-mode .note-textarea {
+  background-color: transparent;
+  color: #fff;
+}
+
+.dark-mode .color-picker {
+  background-color: transparent;
+}
+
+.dark-mode .resizer {
+  background-color: #282c34;
+  border-color: #f0f0f0;
+}
+
+.dark-mode .minimized {
+  background-color: #3a3a4e;
+}
+
+.dark-mode .modal-content {
+  background-color: #282c34;
+  border-color: #666;
+}
+
+.dark-mode .close-button {
+  color: #999;
+}
+
+.dark-mode .close-button:hover,
+.dark-mode .close-button:focus {
+  color: #ccc;
+}
+
+.dark-mode #note-form label {
+  color: #eee;
+}
+
+.dark-mode #note-form textarea {
+  background-color: #3a3a4e;
+  border-color: #666;
+  color: #fff;
+}
+
+.dark-mode #note-form input[type="color"] {
+  border-color: #666;
+}
+
+.dark-mode #note-form input[type="color"]::-webkit-color-swatch {
+  border-color: #666;
+}
+
+.dark-mode #note-form input[type="color"]::-moz-color-swatch {
+  border-color: #666;
+}
+
+.dark-mode #note-form button[type="submit"] {
+  background-color: #007aff;
+  color: #fff;
+}
+
+.dark-mode #note-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode #note-form button[type="button"] {
+  background-color: #3a3a4e;
+  color: #007aff;
+  border-color: #007aff;
+}
+
+.dark-mode #note-form button[type="button"]:hover {
+  background-color: #4d4d4d;
+}
+
+.dark-mode #add-note-button {
+  background-color: #007aff;
+  color: #fff;
+}
+
+.dark-mode #add-note-button:hover {
+  background-color: #0056b3;
+}
+
+.dark-mode #notes-page-header {
+  color: #eee;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 1001;
+  cursor: pointer;
+  font-size: 24px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+.dark-mode .close-button {
+  color: #999;
+}
+
+.dark-mode .close-button:hover {
+  color: #ccc;
+}
