@@ -1,45 +1,75 @@
+/* Styling for the notes container */
+#notes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+  gap: 20px;
+  padding: 20px;
+}
+
 .note {
   background-color: #fff;
-  /* White background for note cards */
   border: 1px solid #ddd;
-  /* Subtle border */
-  border-radius: 10px;
-  /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  /* iOS-like font */
   overflow: hidden;
-  /* Hide content that overflows */
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .note-header {
-  padding: 5px;
+  padding: 10px;
   background-color: #f8f8f8;
-  /* Light gray header */
   border-bottom: 1px solid #ddd;
   cursor: move;
   display: flex;
   justify-content: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.note:hover .note-header {
+  opacity: 1;
 }
 
 .note-header span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   margin-left: 5px;
   cursor: pointer;
   font-size: 14px;
   color: #888;
-  /* Lighter color for icons */
+  z-index: 10;
 }
 
 .note-content {
-  width: calc(100% - 20px);
-  height: calc(100% - 40px);
-  padding: 10px;
+  width: calc(100% - 40px);
+  height: calc(100% - 60px);
+  padding: 20px;
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.5;
   overflow: auto;
   color: #333;
-  /* Dark gray text color */
+}
+
+.note-content textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .resizer {
@@ -48,8 +78,8 @@
   bottom: 0;
   width: 10px;
   height: 10px;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
+  background-color: transparent;
+  border: 1px solid transparent;
   cursor: se-resize;
 }
 
@@ -63,7 +93,6 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
-  /* Semi-transparent backdrop */
   backdrop-filter: blur(5px);
 }
 
@@ -74,8 +103,7 @@
   border: 1px solid #888;
   width: 80%;
   max-width: 500px;
-  border-radius: 10px;
-  /* Rounded corners */
+  border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -107,7 +135,6 @@
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  /* Rounded corners */
   font-size: 1rem;
   resize: vertical;
 }
@@ -125,14 +152,11 @@
   margin-right: 10px;
   cursor: pointer;
   border: 2px solid transparent;
-  /* Add a border */
   transition: border 0.2s;
-  /* Smooth transition for border */
 }
 
 .color-option.active {
   border-color: #007aff;
-  /* Highlight border for active color */
 }
 
 .color-option:hover {
@@ -162,12 +186,10 @@
 
 #note-form button[type="submit"] {
   background-color: #007aff;
-  /* iOS blue */
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  /* Rounded corners */
   cursor: pointer;
   font-size: 1rem;
   margin-right: 10px;
@@ -175,7 +197,6 @@
 
 #note-form button[type="submit"]:hover {
   background-color: #0056b3;
-  /* Darker blue on hover */
 }
 
 #note-form button[type="button"] {
@@ -218,35 +239,21 @@ body.modal-open {
 /* Styling for the "Add Note" button */
 #add-note-button {
   background-color: #007aff;
-  /* iOS blue */
   color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
-  /* Rounded corners */
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Subtle shadow */
   transition: all 0.3s ease;
-  /* Smooth transition for hover effect */
   margin-left: 0;
 }
 
 #add-note-button:hover {
   background-color: #0056b3;
-  /* Darker blue on hover */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  /* Slightly more pronounced shadow on hover */
-}
-
-/* Styling for the notes container */
-#notes-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 150px;
-  gap: 20px;
 }
 
 /* Additional styling for the notes header */

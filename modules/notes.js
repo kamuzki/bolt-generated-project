@@ -152,13 +152,30 @@ export function initNotes() {
 
         makeNoteDraggable(noteElement, note);
         makeNoteResizable(noteElement, note);
+
+        // Initially hide the edit and delete icons
+        const editIcon = noteElement.querySelector(".edit-icon");
+        const deleteIcon = noteElement.querySelector(".delete-icon");
+        editIcon.style.visibility = "hidden";
+        deleteIcon.style.visibility = "hidden";
+
+        // Show icons on mouse hover
+        noteElement.addEventListener("mouseenter", () => {
+          editIcon.style.visibility = "visible";
+          deleteIcon.style.visibility = "visible";
+        });
+
+        noteElement.addEventListener("mouseleave", () => {
+          editIcon.style.visibility = "hidden";
+          deleteIcon.style.visibility = "hidden";
+        });
       });
     }
 
     function editNote(noteId, noteElement, notesContainer) {
       const noteContentElement = noteElement.querySelector(`.note-content[data-note-id="${noteId}"]`);
       const currentContent = noteContentElement.textContent;
-
+    
       const textarea = document.createElement("textarea");
       textarea.value = currentContent;
       textarea.style.width = "100%";
@@ -166,23 +183,32 @@ export function initNotes() {
       textarea.style.resize = "none";
       textarea.style.border = "none";
       textarea.style.backgroundColor = noteElement.style.backgroundColor;
-
+      textarea.style.color = noteElement.style.color;
+      textarea.style.padding = "0";
+      textarea.style.fontFamily = "inherit";
+      textarea.style.fontSize = "inherit";
+    
       noteContentElement.innerHTML = "";
       noteContentElement.appendChild(textarea);
-
+    
       textarea.focus();
-
-      textarea.addEventListener("blur", () => {
+    
+      function handleTextareaBlur() {
         const updatedContent = textarea.value;
         noteContentElement.innerHTML = updatedContent;
-
+    
         let notes = loadNotes();
         const noteIndex = notes.findIndex((n) => n.id === noteId);
         if (noteIndex !== -1) {
           notes[noteIndex].content = updatedContent;
           saveNotes(notes);
         }
-      });
+    
+        // Clean up the event listener to prevent memory leaks
+        textarea.removeEventListener("blur", handleTextareaBlur);
+      }
+    
+      textarea.addEventListener("blur", handleTextareaBlur);
     }
 
     function deleteNote(noteId, notesContainer) {
