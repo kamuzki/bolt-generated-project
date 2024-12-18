@@ -2,6 +2,7 @@ export function initNotes() {
       const notesLink = document.getElementById('notes-link');
       const pageContent = document.getElementById('page-content');
       const originalHeader = document.querySelector('.header-title');
+      const authButtons = document.getElementById('auth-buttons-container');
       const notesHeader = document.getElementById('notes-page-header');
       const addNoteButton = document.createElement('button');
       addNoteButton.id = 'add-note-button';
@@ -18,6 +19,7 @@ export function initNotes() {
       notesLink.addEventListener('click', (e) => {
         e.preventDefault();
         originalHeader.style.display = 'none';
+        authButtons.style.display = 'none';
         notesHeader.style.display = 'block';
         pageContent.innerHTML = '';
     

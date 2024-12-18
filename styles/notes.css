@@ -2,16 +2,17 @@
       position: absolute;
       width: 200px;
       height: 200px;
-      background-color: #ffffcc;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-      font-family: 'Roboto', sans-serif;
+      background-color: #fff; /* White background for note cards */
+      border: 1px solid #ddd; /* Subtle border */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      font-family: 'Helvetica Neue', Arial, sans-serif; /* iOS-like font */
+      overflow: hidden; /* Hide content that overflows */
     }
     
     .note-header {
       padding: 5px;
-      background-color: #f0f0f0;
+      background-color: #f8f8f8; /* Light gray header */
       border-bottom: 1px solid #ddd;
       cursor: move;
       display: flex;
@@ -21,6 +22,8 @@
     .note-header span {
       margin-left: 5px;
       cursor: pointer;
+      font-size: 14px;
+      color: #888; /* Lighter color for icons */
     }
     
     .note-content {
@@ -30,6 +33,7 @@
       font-size: 1rem;
       line-height: 1.4;
       overflow: auto;
+      color: #333; /* Dark gray text color */
     }
     
     .resizer {
@@ -52,7 +56,7 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent backdrop */
       backdrop-filter: blur(5px);
     }
     
@@ -63,7 +67,7 @@
       border: 1px solid #888;
       width: 80%;
       max-width: 500px;
-      border-radius: 5px;
+      border-radius: 10px; /* Rounded corners */
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     }
     
@@ -81,7 +85,7 @@
       text-decoration: none;
     }
     
-    /* Zusätzliche Styles für das Modal-Formular */
+    /* Additional Styles for the Modal Form */
     #note-form label {
       display: block;
       margin-bottom: 5px;
@@ -94,39 +98,73 @@
       padding: 10px;
       margin-bottom: 10px;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 5px; /* Rounded corners */
       font-size: 1rem;
       resize: vertical;
     }
     
     #note-form input[type="color"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
       width: 100%;
       height: 40px;
-      margin-bottom: 10px;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 5px; /* Rounded corners */
+      background-color: transparent;
+      padding: 0;
       cursor: pointer;
     }
     
+    #note-form input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+    
+    #note-form input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 5px; /* Rounded corners */
+    }
+    
+    #note-form input[type="color"]::-moz-color-swatch {
+      border: none;
+      border-radius: 5px; /* Rounded corners */
+    }
+    
     #note-form button[type="submit"] {
-      background-color: #4CAF50;
+      background-color: #007aff; /* iOS blue */
       color: white;
       padding: 10px 20px;
       border: none;
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer;
+      font-size: 1rem;
+      margin-right: 10px;
+    }
+    
+    #note-form button[type="submit"]:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+    
+    #note-form button[type="button"] {
+      /* Cancel button */
+      background-color: #fff;
+      color: #007aff;
+      padding: 10px 20px;
+      border: 1px solid #007aff;
       border-radius: 5px;
       cursor: pointer;
       font-size: 1rem;
     }
     
-    #note-form button[type="submit"]:hover {
-      background-color: #45a049;
+    #note-form button[type="button"]:hover {
+      background-color: #f0f0f0;
     }
     
     body.modal-open {
       overflow: hidden;
     }
     
-    /* Neue CSS-Regeln für die Verwendung von :target */
+    /* New CSS Rules for :target */
     .modal {
       display: none;
     }
@@ -141,5 +179,137 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 999; /* Stellen Sie sicher, dass der Link über dem Modal liegt */
+      z-index: 999;
+    }
+    
+    /* Styling for the "Add Note" button */
+    #add-note-button {
+      background-color: #007aff; /* iOS blue */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px; /* Rounded corners */
+      cursor: pointer;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+      transition: all 0.3s ease; /* Smooth transition for hover effect */
+    }
+    
+    #add-note-button:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Slightly more pronounced shadow on hover */
+    }
+    
+    /* Styling for the notes container */
+    #notes-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    /* Additional styling for the notes header */
+    #notes-page-header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+    
+    .dark-mode .note {
+      background-color: #3a3a4e;
+      border-color: #f0f0f0;
+      color: #fff;
+    }
+    
+    .dark-mode .note-header {
+      background-color: #282c34;
+      border-bottom-color: #f0f0f0;
+    }
+    
+    .dark-mode .note-textarea {
+      background-color: transparent;
+      color: #fff;
+    }
+    
+    .dark-mode .color-picker {
+      background-color: transparent;
+    }
+    
+    .dark-mode .resizer {
+      background-color: #282c34;
+      border-color: #f0f0f0;
+    }
+    
+    .dark-mode .minimized {
+      background-color: #3a3a4e;
+    }
+    
+    .dark-mode .modal-content {
+      background-color: #282c34;
+      border-color: #666;
+    }
+    
+    .dark-mode .close-button {
+      color: #999;
+    }
+    
+    .dark-mode .close-button:hover,
+    .dark-mode .close-button:focus {
+      color: #ccc;
+    }
+    
+    .dark-mode #note-form label {
+      color: #eee;
+    }
+    
+    .dark-mode #note-form textarea {
+      background-color: #3a3a4e;
+      border-color: #666;
+      color: #fff;
+    }
+    
+    .dark-mode #note-form input[type="color"] {
+      border-color: #666;
+    }
+    
+    .dark-mode #note-form input[type="color"]::-webkit-color-swatch {
+      border-color: #666;
+    }
+    
+    .dark-mode #note-form input[type="color"]::-moz-color-swatch {
+      border-color: #666;
+    }
+    
+    .dark-mode #note-form button[type="submit"] {
+      background-color: #007aff;
+      color: #fff;
+    }
+    
+    .dark-mode #note-form button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    
+    .dark-mode #note-form button[type="button"] {
+      background-color: #3a3a4e;
+      color: #007aff;
+      border-color: #007aff;
+    }
+    
+    .dark-mode #note-form button[type="button"]:hover {
+      background-color: #4d4d4d;
+    }
+    
+    .dark-mode #add-note-button {
+      background-color: #007aff;
+      color: #fff;
+    }
+    
+    .dark-mode #add-note-button:hover {
+      background-color: #0056b3;
+    }
+    
+    .dark-mode #notes-page-header {
+      color: #eee;
     }

@@ -13,11 +13,13 @@ export function initNavigation() {
       const test1Link = document.getElementById('test1-link');
       const test2Link = document.getElementById('test2-link');
       const originalHeader = document.querySelector('.header-title');
+      const authButtons = document.getElementById('auth-buttons-container');
       const notesHeader = document.getElementById('notes-page-header');
       const pageContent = document.getElementById('page-content');
     
       function resetHeaders() {
         originalHeader.style.display = 'flex';
+        authButtons.style.display = 'flex';
         notesHeader.style.display = 'none';
       }
     
@@ -34,6 +36,7 @@ export function initNavigation() {
       notesLink.addEventListener('click', (e) => {
         e.preventDefault();
         originalHeader.style.display = 'none';
+        authButtons.style.display = 'none';
         notesHeader.style.display = 'block';
       });
     
