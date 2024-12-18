@@ -1,6 +1,8 @@
 export function initNotes() {
       const notesLink = document.getElementById('notes-link');
       const pageContent = document.getElementById('page-content');
+      const originalHeader = document.querySelector('.header-title');
+      const notesHeader = document.getElementById('notes-page-header');
       const addNoteButton = document.createElement('button');
       addNoteButton.id = 'add-note-button';
       addNoteButton.textContent = 'Neue Notiz hinzufügen';
@@ -15,9 +17,14 @@ export function initNotes() {
       // Display the notes content in the main area when the "Notes" link is clicked
       notesLink.addEventListener('click', (e) => {
         e.preventDefault();
+        originalHeader.style.display = 'none';
+        notesHeader.style.display = 'block';
         pageContent.innerHTML = '';
+    
+        // Append the add-note button and notes container
         pageContent.appendChild(addNoteButton);
         pageContent.appendChild(notesContainer);
+    
         renderNotes(loadNotes(), notesContainer);
       });
     
