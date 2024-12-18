@@ -23,6 +23,13 @@ export function openNoteModal(noteId = null) {
   });
   modalContent.appendChild(closeButton);
 
+  // Add input field for the header
+  const headerInput = document.createElement('input');
+  headerInput.setAttribute('type', 'text');
+  headerInput.setAttribute('placeholder', 'Titel');
+  headerInput.id = `edit-note-header-${noteId || 'new'}`;
+  modalContent.appendChild(headerInput);
+
   const editorContainer = document.createElement('div');
   editorContainer.id = `edit-note-content-${noteId || 'new'}`;
   editorContainer.style.height = '200px';
@@ -60,10 +67,12 @@ export function openNoteModal(noteId = null) {
     if (note) {
       editor.root.innerHTML = note.content;
       tagsInput.value = note.tags.join(', ');
+      headerInput.value = note.header || ''; // Populate header field
     }
   }
 
   saveButton.addEventListener('click', () => {
+    const updatedHeader = headerInput.value;
     const updatedContent = editor.root.innerHTML;
     const updatedTags = tagsInput.value.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
 
@@ -71,12 +80,14 @@ export function openNoteModal(noteId = null) {
     if (noteId) {
       const noteIndex = notes.findIndex((n) => n.id === noteId);
       if (noteIndex !== -1) {
+        notes[noteIndex].header = updatedHeader;
         notes[noteIndex].content = updatedContent;
         notes[noteIndex].tags = updatedTags;
       }
     } else {
       const newNote = {
         id: Date.now(),
+        header: updatedHeader, // Save the header
         content: updatedContent,
         color: "#ffffcc",
         position: getNextAvailablePosition(notes),
@@ -92,10 +103,35 @@ export function openNoteModal(noteId = null) {
 }
 
 export function deleteNote(noteId, notesContainer) {
-  let notes = loadNotes();
-  notes = notes.filter((n) => n.id !== noteId);
-  saveNotes(notes);
-  renderNotes(notes, notesContainer);
+  // Create the confirmation popup overlay
+  const confirmationOverlay = document.createElement('div');
+  confirmationOverlay.classList.add('confirmation-overlay');
+  document.body.appendChild(confirmationOverlay);
+
+  // Create the confirmation popup
+  const confirmationPopup = document.createElement('div');
+  confirmationPopup.classList.add('confirmation-popup');
+  confirmationPopup.innerHTML = `
+    <p>Bist du sicher, dass du diese Notiz löschen möchtest?</p>
+    <button id="confirm-delete">Ja</button>
+    <button id="cancel-delete">Abbrechen</button>
+  `;
+  document.body.appendChild(confirmationPopup);
+
+  // Add event listeners to the buttons
+  document.getElementById('confirm-delete').addEventListener('click', () => {
+    let notes = loadNotes();
+    notes = notes.filter((n) => n.id !== noteId);
+    saveNotes(notes);
+    renderNotes(notes, notesContainer);
+    document.body.removeChild(confirmationPopup);
+    document.body.removeChild(confirmationOverlay);
+  });
+
+  document.getElementById('cancel-delete').addEventListener('click', () => {
+    document.body.removeChild(confirmationPopup);
+    document.body.removeChild(confirmationOverlay);
+  });
 }
 
 export function filterNotes(searchTerm) {
@@ -105,9 +141,10 @@ export function filterNotes(searchTerm) {
   }
   const lowerCaseSearchTerm = searchTerm.toLowerCase();
   return notes.filter(note => {
+    const headerMatch = note.header.toLowerCase().includes(lowerCaseSearchTerm);
     const contentMatch = note.content.toLowerCase().includes(lowerCaseSearchTerm);
     const tagMatch = note.tags.some(tag => tag.toLowerCase().includes(lowerCaseSearchTerm));
-    return contentMatch || tagMatch;
+    return headerMatch || contentMatch || tagMatch;
   });
 }
 
@@ -129,7 +166,9 @@ export function renderNotes(notes, notesContainer) {
     noteElement.style.left = `${note.position.x}px`;
     noteElement.style.top = `${note.position.y}px`;
     noteElement.innerHTML = `
-      <div class="note-header"></div>
+      <div class="note-header">
+        <h3 class="note-title">${note.header || ''}</h3>
+      </div>
       <div class="note-content" data-note-id="${note.id}">${note.content}</div>
       <div class="note-tags" data-note-id="${note.id}">
         ${note.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
@@ -165,6 +204,11 @@ export function renderNotes(notes, notesContainer) {
     // Handle edit button click
     editButton.addEventListener("click", () => {
       openNoteModal(note.id);
+    });
+
+    // Handle delete button click
+    deleteButton.addEventListener("click", () => {
+      deleteNote(note.id, notesContainer);
     });
 
     makeNoteDraggable(noteElement, note);

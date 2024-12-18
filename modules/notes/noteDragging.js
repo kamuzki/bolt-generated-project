@@ -6,7 +6,7 @@ export function makeNoteDraggable(noteElement, note) {
   let startMouseX, startMouseY;
 
   noteElement.addEventListener("mousedown", (e) => {
-    if (e.target.classList.contains("note-header") || e.target.tagName === "SPAN") {
+    if (e.target.classList.contains("note-header") || e.target.tagName === "SPAN" || e.target.tagName === "H3") {
       e.preventDefault();
       isDragging = true;
       startPosX = noteElement.offsetLeft;
