@@ -1,3 +1,4 @@
+/* Styling for the note modal */
 .modal {
   display: none;
   position: fixed;
@@ -12,95 +13,98 @@
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: #fff;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #ddd;
   width: 80%;
   max-width: 500px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
   font-weight: bold;
+  color: #888;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.3s ease;
+  border-radius: 50%; /* Make it round */
+  width: 30px;
+  height: 30px;
+  line-height: 30px; /* Center the X */
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1); /* Blur background */
+  backdrop-filter: blur(3px); /* Blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
 }
 
-.close-button:hover,
+.close-button:hover {
+  color: #555;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
 .close-button:focus {
-  color: black;
-  text-decoration: none;
+  outline: none;
 }
 
-/* Additional Styles for the Modal Form */
-#note-form label {
+/* Add a header for the form */
+.modal-header {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+/* Add headers for input fields */
+.input-header {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #555;
 }
 
-#note-form textarea {
-  width: calc(100% - 20px);
-  height: 150px;
+input[type="text"],
+textarea,
+select {
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
   resize: vertical;
 }
 
-/* Styling for the color palette */
-#color-palette {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.color-option {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+input[type="color"] {
+  width: 50px;
+  height: 50px;
   margin-right: 10px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border 0.2s;
 }
 
-.color-option.active {
-  border-color: #007aff;
-}
-
-.color-option:hover {
-  transform: scale(1.1);
-}
-
-/* Color options */
-.color-option[data-color="#f44336"] {
-  background-color: #f44336;
-}
-
-.color-option[data-color="#e91e63"] {
-  background-color: #e91e63;
-}
-
-.color-option[data-color="#9c27b0"] {
-  background-color: #9c27b0;
-}
-
-.color-option[data-color="#673ab7"] {
-  background-color: #673ab7;
-}
-
-.color-option[data-color="#3f51b5"] {
-  background-color: #3f51b5;
-}
-
-#note-form button[type="submit"] {
-  background-color: #007aff;
+button[type="submit"] {
+  background-color: #4CAF50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -108,34 +112,30 @@
   cursor: pointer;
   font-size: 1rem;
   margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
-#note-form button[type="submit"]:hover {
-  background-color: #0056b3;
+button[type="submit"]:hover {
+  background-color: #45a049;
 }
 
-#note-form button[type="button"] {
-  /* Cancel button */
-  background-color: #fff;
-  color: #007aff;
+button[type="button"] {
+  background-color: #f44336;
+  color: white;
   padding: 10px 20px;
-  border: 1px solid #007aff;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-#note-form button[type="button"]:hover {
-  background-color: #f0f0f0;
+button[type="button"]:hover {
+  background-color: #da190b;
 }
 
 body.modal-open {
   overflow: hidden;
-}
-
-/* New CSS Rules for :target */
-.modal {
-  display: none;
 }
 
 .modal:target {
@@ -150,227 +150,3 @@ body.modal-open {
   height: 100%;
   z-index: 999;
 }
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  z-index: 1001;
-  cursor: pointer;
-  font-size: 24px;
-  color: #666;
-  transition: color 0.3s ease;
-}
-
-.close-button:hover {
-  color: #000;
-}
-
-.dark-mode .close-button {
-  color: #999;
-}
-
-.dark-mode .close-button:hover {
-  color: #ccc;
-}
-
-.save-button {
-  padding: 5px 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.save-button:hover {
-  background-color: #45a049;
-}
-
-.dark-mode .save-button {
-  background-color: #007aff;
-}
-
-.dark-mode .save-button:hover {
-  background-color: #0056b3;
-}
-
-.cancel-button {
-  padding: 5px 10px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.cancel-button:hover {
-  background-color: #da190b;
-}
-
-.dark-mode .cancel-button {
-  background-color: #f44336;
-}
-
-.dark-mode .cancel-button:hover {
-  background-color: #da190b;
-}
-
-.dark-mode .modal-content {
-  background-color: #282c34;
-  border-color: #666;
-}
-
-.dark-mode .close-button {
-  color: #999;
-}
-
-.dark-mode .close-button:hover,
-.dark-mode .close-button:focus {
-  color: #ccc;
-}
-
-.dark-mode #note-form label {
-  color: #eee;
-}
-
-.dark-mode #note-form textarea {
-  background-color: #3a3a4e;
-  border-color: #666;
-  color: #fff;
-}
-
-.dark-mode #note-form input[type="color"] {
-  border-color: #666;
-}
-
-.dark-mode #note-form input[type="color"]::-webkit-color-swatch {
-  border-color: #666;
-}
-
-.dark-mode #note-form input[type="color"]::-moz-color-swatch {
-  border-color: #666;
-}
-
-.dark-mode #note-form button[type="submit"] {
-  background-color: #007aff;
-  color: #fff;
-}
-
-.dark-mode #note-form button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.dark-mode #note-form button[type="button"] {
-  background-color: #3a3a4e;
-  color: #007aff;
-  border-color: #007aff;
-}
-
-.dark-mode #note-form button[type="button"]:hover {
-  background-color: #4d4d4d;
-}
-
-.modal-content input[type="text"] {
-  width: calc(100% - 22px);
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.dark-mode .modal-content input[type="text"] {
-  background-color: #3a3a4e;
-  border-color: #666;
-  color: #fff;
-}
-
-.confirmation-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1002;
-  text-align: center;
-}
-
-.confirmation-popup p {
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}
-
-.confirmation-popup button {
-  padding: 10px 20px;
-  margin: 0 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.confirmation-popup button#confirm-delete {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.confirmation-popup button#confirm-delete:hover {
-  background-color: #45a049;
-}
-
-.confirmation-popup button#cancel-delete {
-  background-color: #f44336;
-  color: white;
-}
-
-.confirmation-popup button#cancel-delete:hover {
-  background-color: #da190b;
-}
-
-.dark-mode .confirmation-popup {
-  background-color: #282c34;
-  border-color: #666;
-}
-
-.dark-mode .confirmation-popup p {
-  color: #fff;
-}
-
-.dark-mode .confirmation-popup button#confirm-delete {
-  background-color: #45a049;
-}
-
-.dark-mode .confirmation-popup button#confirm-delete:hover {
-  background-color: #4CAF50;
-}
-
-.dark-mode .confirmation-popup button#cancel-delete {
-  background-color: #da190b;
-}
-
-.dark-mode .confirmation-popup button#cancel-delete:hover {
-  background-color: #f44336;
-}
-
-.confirmation-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(5px);
-  z-index: 1001;
-}
-
-</ অপে_file>
