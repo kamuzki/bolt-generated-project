@@ -33,13 +33,15 @@ export function makeNoteDraggable(noteElement, note) {
     let newX = Math.round((startPosX + offsetX) / gridCellWidth) * gridCellWidth;
     let newY = Math.round((startPosY + offsetY) / gridCellHeight) * gridCellHeight;
   
-    noteElement.style.left = `${newX}px`;
-    noteElement.style.top = `${newY}px`;
-  
-    // Check for collisions and move the overlapped note
-    const overlappedNote = getOverlappedNote(noteElement);
-    if (overlappedNote) {
-      moveNoteToNextAvailable(overlappedNote);
+    // Check for collisions and prevent overlap
+    if (!isOverlapping(noteElement, newX, newY, noteElement.offsetWidth, noteElement.offsetHeight)) {
+      noteElement.style.left = `${newX}px`;
+      noteElement.style.top = `${newY}px`;
+    } else {
+      // If overlapping, try to find the next available position
+      const adjustedPosition = findNextAvailablePosition(noteElement, newX, newY);
+      noteElement.style.left = `${adjustedPosition.x}px`;
+      noteElement.style.top = `${adjustedPosition.y}px`;
     }
   });
 
@@ -69,12 +71,17 @@ export function makeNoteDraggable(noteElement, note) {
   });
 }
 
-function getOverlappedNote(currentNote) {
+function isOverlapping(noteElement, newX, newY, width, height) {
   const notes = loadNotes();
-  const currentRect = currentNote.getBoundingClientRect();
+  const currentRect = {
+    left: newX,
+    top: newY,
+    right: newX + width,
+    bottom: newY + height
+  };
 
   for (let i = 0; i < notes.length; i++) {
-    if (notes[i].id.toString() === currentNote.id.split('-')[1]) continue;
+    if (notes[i].id.toString() === noteElement.id.split('-')[1]) continue;
 
     const otherNote = document.getElementById(`note-${notes[i].id}`);
     const otherRect = otherNote.getBoundingClientRect();
@@ -85,56 +92,30 @@ function getOverlappedNote(currentNote) {
       currentRect.top < otherRect.bottom &&
       currentRect.bottom > otherRect.top
     ) {
-      return { element: otherNote, data: notes[i] };
+      return true;
     }
   }
 
-  return null;
+  return false;
 }
 
-function moveNoteToNextAvailable(note) {
+function findNextAvailablePosition(noteElement, startX, startY) {
   const notes = loadNotes();
   const gridCellWidth = 220;
   const gridCellHeight = 220;
   const margin = 20;
   const notesContainer = document.getElementById('notes-container');
 
-  let newPosition = { x: 0, y: 0 };
-  let foundPosition = false;
+  let newX = startX;
+  let newY = startY;
 
-  while (!foundPosition) {
-    foundPosition = true;
-    for (let i = 0; i < notes.length; i++) {
-      if (notes[i].id === note.data.id) continue;
-
-      const otherNote = document.getElementById(`note-${notes[i].id}`);
-      if (!otherNote) continue; // Skip if note element not found
-      const otherRect = otherNote.getBoundingClientRect();
-
-      if (
-        newPosition.x + gridCellWidth > otherRect.left &&
-        newPosition.x < otherRect.right &&
-        newPosition.y + gridCellHeight > otherRect.top &&
-        newPosition.y < otherRect.bottom
-      ) {
-        foundPosition = false;
-        newPosition.x += gridCellWidth + margin;
-        if (newPosition.x + gridCellWidth > notesContainer.offsetWidth) {
-          newPosition.x = 0;
-          newPosition.y += gridCellHeight + margin;
-        }
-        break;
-      }
+  while (isOverlapping(noteElement, newX, newY, noteElement.offsetWidth, noteElement.offsetHeight)) {
+    newX += gridCellWidth + margin;
+    if (newX + noteElement.offsetWidth > notesContainer.offsetWidth) {
+      newX = 0;
+      newY += gridCellHeight + margin;
     }
   }
 
-  note.element.style.left = `${newPosition.x}px`;
-  note.element.style.top = `${newPosition.y}px`;
-  note.data.position = newPosition;
-
-  const noteIndex = notes.findIndex((n) => n.id === note.data.id);
-  if (noteIndex !== -1) {
-    notes[noteIndex] = note.data;
-    saveNotes(notes);
-  }
+  return { x: newX, y: newY };
 }

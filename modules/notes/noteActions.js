@@ -30,6 +30,27 @@ export function openNoteModal(noteId = null) {
   headerInput.id = `edit-note-header-${noteId || 'new'}`;
   modalContent.appendChild(headerInput);
 
+  // Add Projekt dropdown directly below the header input
+  const projektDropdown = document.createElement('select');
+  projektDropdown.id = `edit-note-projekt-${noteId || 'new'}`;
+  modalContent.appendChild(projektDropdown);
+
+  // Fetch Projekte and populate the dropdown
+  const projekte = JSON.parse(localStorage.getItem('projects') || '[]');
+  if (projekte.length > 0) {
+    projekte.forEach(projekt => {
+      const option = document.createElement('option');
+      option.value = projekt.projektname;
+      option.text = projekt.projektname;
+      projektDropdown.appendChild(option);
+    });
+  } else {
+    const option = document.createElement('option');
+    option.text = 'No Projekte available';
+    option.disabled = true;
+    projektDropdown.appendChild(option);
+  }
+
   const editorContainer = document.createElement('div');
   editorContainer.id = `edit-note-content-${noteId || 'new'}`;
   editorContainer.style.height = '200px';
@@ -68,6 +89,7 @@ export function openNoteModal(noteId = null) {
       editor.root.innerHTML = note.content;
       tagsInput.value = note.tags.join(', ');
       headerInput.value = note.header || ''; // Populate header field
+      projektDropdown.value = note.projekt || ''; // Set dropdown value
     }
   }
 
@@ -75,6 +97,7 @@ export function openNoteModal(noteId = null) {
     const updatedHeader = headerInput.value;
     const updatedContent = editor.root.innerHTML;
     const updatedTags = tagsInput.value.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+    const selectedProjekt = projektDropdown.value;
 
     let notes = loadNotes();
     if (noteId) {
@@ -83,6 +106,7 @@ export function openNoteModal(noteId = null) {
         notes[noteIndex].header = updatedHeader;
         notes[noteIndex].content = updatedContent;
         notes[noteIndex].tags = updatedTags;
+        notes[noteIndex].projekt = selectedProjekt; // Save selected Projekt
       }
     } else {
       const newNote = {
@@ -92,7 +116,8 @@ export function openNoteModal(noteId = null) {
         color: "#ffffcc",
         position: getNextAvailablePosition(notes),
         size: { width: 200, height: 200 },
-        tags: updatedTags
+        tags: updatedTags,
+        projekt: selectedProjekt // Save selected Projekt
       };
       notes.push(newNote);
     }
@@ -173,6 +198,7 @@ export function renderNotes(notes, notesContainer) {
       <div class="note-tags" data-note-id="${note.id}">
         ${note.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
       </div>
+      <p class="note-projekt">Projekt: ${note.projekt || 'Kein Projekt'}</p>
     `;
     notesContainer.appendChild(noteElement);
 
